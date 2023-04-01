@@ -2,16 +2,46 @@ package gerenciadorTarefas;
 
 import interfaces.FrmLogin;
 import interfaces.FrmPrincipal;
+import java.awt.Frame;
+import java.lang.reflect.InvocationTargetException;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class GerenciadorInterfaces {
     
     private FrmLogin janLogin = null;
+    private FrmPrincipal janPrincipal = null;
+
     
+    
+    
+    
+    
+    private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {
+        if (dlg == null){     
+            try {
+                dlg = (JDialog) classe.getConstructor(Frame.class, boolean.class, GerenciadorInterfaces.class ).newInstance(parent,true,this);
+            } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                JOptionPane.showMessageDialog(parent, "Erro ao abrir a janela " + classe.getName() );
+            }
+        }        
+        dlg.setVisible(true); 
+        return dlg;
+    }
+  
     
     public void janelaLogin(){
         janLogin = new FrmLogin(this);
         janLogin.setVisible(true);
     }
+    
+    
+    public void janelaPrincipal(){
+        janLogin.setVisible(false);
+        janPrincipal = new FrmPrincipal(this);
+        janPrincipal.setVisible(true);
+    }
+    
     
     
     
