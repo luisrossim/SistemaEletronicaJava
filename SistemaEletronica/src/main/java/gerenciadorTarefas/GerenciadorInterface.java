@@ -1,5 +1,6 @@
 package gerenciadorTarefas;
 
+import interfaces.DlgCadCliente;
 import interfaces.FrmLogin;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
@@ -7,11 +8,11 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-public class GerenciadorInterfaces {
+public class GerenciadorInterface {
     
     private FrmLogin janLogin = null;
     private FrmPrincipal janPrincipal = null;
-
+    private DlgCadCliente janCadCliente = null;
     
     
     
@@ -20,7 +21,7 @@ public class GerenciadorInterfaces {
     private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {
         if (dlg == null){     
             try {
-                dlg = (JDialog) classe.getConstructor(Frame.class, boolean.class, GerenciadorInterfaces.class ).newInstance(parent,true,this);
+                dlg = (JDialog) classe.getConstructor(Frame.class, boolean.class, GerenciadorInterface.class ).newInstance(parent,true,this);
             } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 JOptionPane.showMessageDialog(parent, "Erro ao abrir a janela " + classe.getName() );
             }
@@ -28,7 +29,7 @@ public class GerenciadorInterfaces {
         dlg.setVisible(true); 
         return dlg;
     }
-  
+    
     
     public void janelaLogin(){
         janLogin = new FrmLogin(this);
@@ -41,6 +42,20 @@ public class GerenciadorInterfaces {
         janPrincipal = new FrmPrincipal(this);
         janPrincipal.setVisible(true);
     }
+    
+    
+    public void janelaCadCliente() {
+        janCadCliente = (DlgCadCliente) abrirJanela(janPrincipal, janCadCliente, DlgCadCliente.class);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -71,7 +86,7 @@ public class GerenciadorInterfaces {
         }
         //</editor-fold>
 
-        GerenciadorInterfaces gerIG = new GerenciadorInterfaces();
+        GerenciadorInterface gerIG = new GerenciadorInterface();
         gerIG.janelaLogin();
     }    
 }
