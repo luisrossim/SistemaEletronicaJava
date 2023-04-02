@@ -1,6 +1,8 @@
 package gerenciadorTarefas;
 
 import interfaces.DlgCadCliente;
+import interfaces.DlgCadProdutoRef;
+import interfaces.DlgCadServico;
 import interfaces.FrmLogin;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
@@ -13,7 +15,8 @@ public class GerenciadorInterface {
     private FrmLogin janLogin = null;
     private FrmPrincipal janPrincipal = null;
     private DlgCadCliente janCadCliente = null;
-    
+    private DlgCadServico janCadServico = null;
+    private DlgCadProdutoRef janCadProdutoRef = null;
     
     
     
@@ -49,6 +52,14 @@ public class GerenciadorInterface {
     }
     
     
+    public void janelaCadServico(){
+        janCadServico = (DlgCadServico) abrirJanela(janPrincipal, janCadServico, DlgCadServico.class);
+    }
+    
+    
+    public void janelaCadProdutoRef(){
+        janCadProdutoRef = (DlgCadProdutoRef) abrirJanela(janPrincipal, janCadProdutoRef, DlgCadProdutoRef.class);
+    }
     
     
     

@@ -1,8 +1,8 @@
 package interfaces;
 
-public class DlgListarPedidos extends javax.swing.JDialog {
+public class DlgPesqServico extends javax.swing.JDialog {
 
-    public DlgListarPedidos(java.awt.Frame parent, boolean modal) {
+    public DlgPesqServico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -15,7 +15,6 @@ public class DlgListarPedidos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Pedidos");
-        setPreferredSize(new java.awt.Dimension(600, 680));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
