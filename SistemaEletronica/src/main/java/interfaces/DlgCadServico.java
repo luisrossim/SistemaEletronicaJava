@@ -45,7 +45,7 @@ public class DlgCadServico extends javax.swing.JDialog {
         jRadioButton6 = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jButton7 = new javax.swing.JButton();
+        btnProcurarCliente = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -184,8 +184,13 @@ public class DlgCadServico extends javax.swing.JDialog {
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 300, 60));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 30, -1));
+        btnProcurarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarClienteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnProcurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 30, -1));
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
         jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 30, -1));
@@ -287,6 +292,10 @@ public class DlgCadServico extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnProcurarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarClienteActionPerformed
+        gerenciadorI.janelaProcurarCliente();
+    }//GEN-LAST:event_btnProcurarClienteActionPerformed
+
     
     
     
@@ -295,6 +304,7 @@ public class DlgCadServico extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnProcurarCliente;
     private javax.swing.ButtonGroup btngrpEntrega;
     private javax.swing.ButtonGroup btngrpLocal;
     private javax.swing.JCheckBox checkAudioDefeito;
@@ -304,7 +314,6 @@ public class DlgCadServico extends javax.swing.JDialog {
     private javax.swing.JCheckBox checkTelaDefeito;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;

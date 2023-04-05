@@ -41,7 +41,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         radioMasculino = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
+        btnProcurarCliente = new javax.swing.JButton();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
         btnCancelar = new javax.swing.JButton();
@@ -128,8 +128,13 @@ public class DlgCadCliente extends javax.swing.JDialog {
 
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 220, 310, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 30, 30));
+        btnProcurarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarClienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProcurarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 30, 30));
 
         try {
             jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -214,14 +219,18 @@ public class DlgCadCliente extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnProcurarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarClienteActionPerformed
+        gerenciadorI.janelaProcurarCliente();
+    }//GEN-LAST:event_btnProcurarClienteActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnProcurarCliente;
     private javax.swing.ButtonGroup btngrpSexo;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;

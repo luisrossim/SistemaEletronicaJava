@@ -6,6 +6,7 @@ import interfaces.DlgCadServico;
 import interfaces.DlgPesqCliente;
 import interfaces.DlgPesqProduto;
 import interfaces.DlgPesqServico;
+import interfaces.DlgPesqVenda;
 import interfaces.DlgVendaProdutoRef;
 import interfaces.FrmLogin;
 import interfaces.FrmPrincipal;
@@ -25,7 +26,7 @@ public class GerenciadorInterface {
     private DlgPesqCliente janelaProcurarCliente = null;
     private DlgPesqServico janelaProcurarServico = null;
     private DlgPesqProduto janelaProcurarProduto = null;
-    
+    private DlgPesqVenda janelaProcurarVenda = null;
     
     
     
@@ -81,10 +82,13 @@ public class GerenciadorInterface {
         janelaProcurarServico = (DlgPesqServico) abrirJanela(janPrincipal, janelaProcurarServico, DlgPesqServico.class);
     }
     
-     public void janelaProcurarProduto(){
+    public void janelaProcurarProduto(){
         janelaProcurarProduto = (DlgPesqProduto) abrirJanela(janPrincipal, janelaProcurarProduto, DlgPesqProduto.class);
     }
     
+    public void janelaProcurarVenda(){
+        janelaProcurarVenda = (DlgPesqVenda) abrirJanela(janPrincipal, janelaProcurarVenda, DlgPesqVenda.class);
+    }
     
     
     
