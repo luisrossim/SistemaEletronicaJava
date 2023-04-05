@@ -3,6 +3,10 @@ package gerenciadorTarefas;
 import interfaces.DlgCadCliente;
 import interfaces.DlgCadProdutoRef;
 import interfaces.DlgCadServico;
+import interfaces.DlgPesqCliente;
+import interfaces.DlgPesqProduto;
+import interfaces.DlgPesqServico;
+import interfaces.DlgVendaProdutoRef;
 import interfaces.FrmLogin;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
@@ -17,6 +21,10 @@ public class GerenciadorInterface {
     private DlgCadCliente janCadCliente = null;
     private DlgCadServico janCadServico = null;
     private DlgCadProdutoRef janCadProdutoRef = null;
+    private DlgVendaProdutoRef janVendaProdutoRef = null;
+    private DlgPesqCliente janelaProcurarCliente = null;
+    private DlgPesqServico janelaProcurarServico = null;
+    private DlgPesqProduto janelaProcurarProduto = null;
     
     
     
@@ -41,7 +49,7 @@ public class GerenciadorInterface {
     
     
     public void janelaPrincipal(){
-        janLogin.setVisible(false);
+        janLogin.dispose();
         janPrincipal = new FrmPrincipal(this);
         janPrincipal.setVisible(true);
     }
@@ -61,7 +69,21 @@ public class GerenciadorInterface {
         janCadProdutoRef = (DlgCadProdutoRef) abrirJanela(janPrincipal, janCadProdutoRef, DlgCadProdutoRef.class);
     }
     
+    public void janelaVendaProdutoRef(){
+        janVendaProdutoRef = (DlgVendaProdutoRef) abrirJanela(janPrincipal, janVendaProdutoRef, DlgVendaProdutoRef.class);
+    }
     
+    public void janelaProcurarCliente(){
+        janelaProcurarCliente = (DlgPesqCliente) abrirJanela(janPrincipal, janelaProcurarCliente, DlgPesqCliente.class);
+    }
+    
+    public void janelaProcurarServico(){
+        janelaProcurarServico = (DlgPesqServico) abrirJanela(janPrincipal, janelaProcurarServico, DlgPesqServico.class);
+    }
+    
+     public void janelaProcurarProduto(){
+        janelaProcurarProduto = (DlgPesqProduto) abrirJanela(janPrincipal, janelaProcurarProduto, DlgPesqProduto.class);
+    }
     
     
     

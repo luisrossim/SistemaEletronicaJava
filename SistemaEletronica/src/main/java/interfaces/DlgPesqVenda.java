@@ -2,16 +2,16 @@ package interfaces;
 
 import gerenciadorTarefas.GerenciadorInterface;
 
-public class DlgPesqProduto extends javax.swing.JDialog {
+public class DlgPesqVenda extends javax.swing.JDialog {
 
-    private GerenciadorInterface gerenciadorI;
-    
-    public DlgPesqProduto(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
+    GerenciadorInterface gerenciadorI;  
+        
+    public DlgPesqVenda(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
         initComponents();
         this.gerenciadorI = gerenciadorI;
     }
 
-  
+    
     
     
     @SuppressWarnings("unchecked")
@@ -19,7 +19,7 @@ public class DlgPesqProduto extends javax.swing.JDialog {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Procurar Produto");
+        setTitle("Procurar Produto Reformado");
         setModal(true);
         setResizable(false);
 
@@ -37,9 +37,12 @@ public class DlgPesqProduto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
- 
     
+    
+  
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

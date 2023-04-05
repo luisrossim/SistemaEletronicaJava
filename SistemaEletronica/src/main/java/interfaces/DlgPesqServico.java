@@ -1,10 +1,14 @@
 package interfaces;
 
+import gerenciadorTarefas.GerenciadorInterface;
+
 public class DlgPesqServico extends javax.swing.JDialog {
 
-    public DlgPesqServico(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    private GerenciadorInterface gerenciadorI;
+    
+    public DlgPesqServico(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
         initComponents();
+        this.gerenciadorI = gerenciadorI;
     }
 
   
@@ -14,7 +18,9 @@ public class DlgPesqServico extends javax.swing.JDialog {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista de Pedidos");
+        setTitle("Procurar Serviço");
+        setModal(true);
+        setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
