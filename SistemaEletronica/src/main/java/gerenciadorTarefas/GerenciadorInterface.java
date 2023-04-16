@@ -1,23 +1,27 @@
 package gerenciadorTarefas;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import interfaces.DlgCadCliente;
 import interfaces.DlgCadProdutoRef;
 import interfaces.DlgCadServico;
+import interfaces.DlgLogin;
 import interfaces.DlgPesqCliente;
 import interfaces.DlgPesqProduto;
 import interfaces.DlgPesqServico;
 import interfaces.DlgPesqVenda;
 import interfaces.DlgVendaProdutoRef;
-import interfaces.FrmLogin;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class GerenciadorInterface {
     
-    private FrmLogin janLogin = null;
+    private DlgLogin janLogin = null;
     private FrmPrincipal janPrincipal = null;
     private DlgCadCliente janCadCliente = null;
     private DlgCadServico janCadServico = null;
@@ -43,28 +47,22 @@ public class GerenciadorInterface {
     }
     
     
-    public void janelaLogin(){
-        janLogin = new FrmLogin(this);
-        janLogin.setVisible(true);
+    public void janelaLogin() {
+        janLogin = (DlgLogin) abrirJanela(null, janLogin, DlgLogin.class);
     }
-    
-    
+   
     public void janelaPrincipal(){
-        janLogin.dispose();
         janPrincipal = new FrmPrincipal(this);
         janPrincipal.setVisible(true);
     }
-    
     
     public void janelaCadCliente() {
         janCadCliente = (DlgCadCliente) abrirJanela(janPrincipal, janCadCliente, DlgCadCliente.class);
     }
     
-    
     public void janelaCadServico(){
         janCadServico = (DlgCadServico) abrirJanela(janPrincipal, janCadServico, DlgCadServico.class);
     }
-    
     
     public void janelaCadProdutoRef(){
         janCadProdutoRef = (DlgCadProdutoRef) abrirJanela(janPrincipal, janCadProdutoRef, DlgCadProdutoRef.class);
@@ -99,28 +97,16 @@ public class GerenciadorInterface {
     
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the FlatLighLaf and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-        */
+        //Setando um tema de um repositório externo
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                // System.out.println( info.getName() );
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( UnsupportedLookAndFeelException ex ) {
+            System.err.println( "Falha ao iniciar tema FlatDarkLaf" );
+        }catch (Exception ex) {
+            System.err.println( "Falha ao definir tema" );
+        } 
         //</editor-fold>
 
         GerenciadorInterface gerIG = new GerenciadorInterface();

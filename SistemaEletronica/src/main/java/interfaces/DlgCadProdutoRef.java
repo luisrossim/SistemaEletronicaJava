@@ -164,6 +164,7 @@ public class DlgCadProdutoRef extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
