@@ -22,17 +22,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnNovoServico = new javax.swing.JButton();
-        btnProcurarServico3 = new javax.swing.JButton();
+        btnProcurarServico2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         btnVender = new javax.swing.JButton();
-        btnProcurarVenda = new javax.swing.JButton();
+        btnProcurarVenda1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        btnProcurarProduto2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -58,18 +59,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Produto", "Data", "Situação", "Valor"
+                "ID", "Cliente", "Produto", "Situação", "Data"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 620, 630));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 620, 620));
 
         btnNovoServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         btnNovoServico.setText("Novo");
@@ -78,33 +79,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnNovoServicoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNovoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 100, 30));
+        jPanel3.add(btnNovoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 30));
 
-        btnProcurarServico3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarServico3.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarServico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarServico2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarServico3ActionPerformed(evt);
+                btnProcurarServico2ActionPerformed(evt);
             }
         });
-        jPanel3.add(btnProcurarServico3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 40, 30));
+        jPanel3.add(btnProcurarServico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 40, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Produto", "Data", "Valor"
+                "ID", "Cliente", "Produto", "Data", "Valor"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 390, 350));
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 390, 340));
 
         btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/sell.png"))); // NOI18N
         btnVender.setText("Vender");
@@ -113,15 +114,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnVenderActionPerformed(evt);
             }
         });
-        jPanel4.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 110, 30));
+        jPanel4.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, 30));
 
-        btnProcurarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarVenda.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarVenda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarVenda1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarVendaActionPerformed(evt);
+                btnProcurarVenda1ActionPerformed(evt);
             }
         });
-        jPanel4.add(btnProcurarVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 40, 30));
+        jPanel4.add(btnProcurarVenda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 40, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel1.setText("Área de produtos reformados");
@@ -140,12 +141,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Produto", "Descrição", "Reparo", "Valor"
+                "ID", "Produto", "Marca", "Valor"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 390, 220));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 390, 190));
+
+        btnProcurarProduto2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarProduto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarProduto2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProcurarProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 40, 30));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         jMenu1.setDisabledSelectedIcon(null);
@@ -314,13 +323,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaCadServico();
     }//GEN-LAST:event_btnNovoServicoActionPerformed
 
-    private void btnProcurarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendaActionPerformed
+    private void btnProcurarProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarProduto2ActionPerformed
         gerenciadorI.janelaProcurarVenda();
-    }//GEN-LAST:event_btnProcurarVendaActionPerformed
+    }//GEN-LAST:event_btnProcurarProduto2ActionPerformed
 
-    private void btnProcurarServico3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarServico3ActionPerformed
+    private void btnProcurarServico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarServico2ActionPerformed
+        gerenciadorI.janelaProcurarServico();
+    }//GEN-LAST:event_btnProcurarServico2ActionPerformed
+
+    private void btnProcurarVenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVenda1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProcurarServico3ActionPerformed
+    }//GEN-LAST:event_btnProcurarVenda1ActionPerformed
 
     
     
@@ -334,9 +347,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnNovoServico;
     private javax.swing.JMenuItem btnProcurarCliente;
     private javax.swing.JMenuItem btnProcurarProduto;
+    private javax.swing.JButton btnProcurarProduto2;
     private javax.swing.JMenuItem btnProcurarServico;
-    private javax.swing.JButton btnProcurarServico3;
-    private javax.swing.JButton btnProcurarVenda;
+    private javax.swing.JButton btnProcurarServico2;
+    private javax.swing.JButton btnProcurarVenda1;
     private javax.swing.JButton btnVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

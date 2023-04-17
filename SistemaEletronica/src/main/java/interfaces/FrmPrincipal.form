@@ -221,7 +221,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="60" width="620" height="630"/>
+              <AbsoluteConstraints x="10" y="70" width="620" height="620"/>
             </Constraint>
           </Constraints>
 
@@ -230,13 +230,12 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="4">
+                  <Table columnCount="5" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Nome" type="java.lang.Object"/>
+                    <Column editable="true" title="Cliente" type="java.lang.Object"/>
                     <Column editable="true" title="Produto" type="java.lang.Object"/>
-                    <Column editable="true" title="Data" type="java.lang.Object"/>
                     <Column editable="true" title="Situa&#xe7;&#xe3;o" type="java.lang.Object"/>
-                    <Column editable="true" title="Valor" type="java.lang.Object"/>
+                    <Column editable="true" title="Data" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -255,22 +254,22 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="530" y="20" width="100" height="30"/>
+              <AbsoluteConstraints x="10" y="30" width="100" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnProcurarServico3">
+        <Component class="javax.swing.JButton" name="btnProcurarServico2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/interfaces.imgs/search.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarServico3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarServico2ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="470" y="20" width="40" height="30"/>
+              <AbsoluteConstraints x="590" y="30" width="40" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -297,7 +296,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="60" width="390" height="350"/>
+              <AbsoluteConstraints x="10" y="70" width="390" height="340"/>
             </Constraint>
           </Constraints>
 
@@ -306,8 +305,9 @@
             <Component class="javax.swing.JTable" name="jTable2">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
-                    <Column editable="true" title="Nome" type="java.lang.Object"/>
+                  <Table columnCount="5" rowCount="4">
+                    <Column editable="true" title="ID" type="java.lang.Object"/>
+                    <Column editable="true" title="Cliente" type="java.lang.Object"/>
                     <Column editable="true" title="Produto" type="java.lang.Object"/>
                     <Column editable="true" title="Data" type="java.lang.Object"/>
                     <Column editable="true" title="Valor" type="java.lang.Object"/>
@@ -329,22 +329,22 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="20" width="110" height="30"/>
+              <AbsoluteConstraints x="10" y="30" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnProcurarVenda">
+        <Component class="javax.swing.JButton" name="btnProcurarVenda1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/interfaces.imgs/search.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarVendaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarVenda1ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="230" y="20" width="40" height="30"/>
+              <AbsoluteConstraints x="360" y="30" width="40" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -387,7 +387,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="30" width="390" height="220"/>
+              <AbsoluteConstraints x="10" y="60" width="390" height="190"/>
             </Constraint>
           </Constraints>
 
@@ -397,9 +397,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
+                    <Column editable="true" title="ID" type="java.lang.Object"/>
                     <Column editable="true" title="Produto" type="java.lang.Object"/>
-                    <Column editable="true" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
-                    <Column editable="true" title="Reparo" type="java.lang.Object"/>
+                    <Column editable="true" title="Marca" type="java.lang.Object"/>
                     <Column editable="true" title="Valor" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -407,6 +407,21 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnProcurarProduto2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/interfaces.imgs/search.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarProduto2ActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="360" y="20" width="40" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -2,6 +2,7 @@ package gerenciadorTarefas;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import dominio.Cidade;
 import interfaces.DlgCadCliente;
 import interfaces.DlgCadProdutoRef;
 import interfaces.DlgCadServico;
@@ -14,6 +15,10 @@ import interfaces.DlgVendaProdutoRef;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -34,6 +39,25 @@ public class GerenciadorInterface {
     
     
     
+    
+    GerenciadorDominio gerDominio;
+    
+    public GerenciadorInterface() {
+        try {
+            gerDominio = new GerenciadorDominio();
+        } catch (ClassNotFoundException | SQLException  ex) {
+            JOptionPane.showMessageDialog(janPrincipal, "Erro de conexão com o banco. " + ex.getMessage() );
+                System.exit(-1);
+        } 
+    }
+    
+    public GerenciadorDominio getGerDominio() {
+        return gerDominio;
+    }
+
+    
+    
+    
     private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {
         if (dlg == null){     
             try {
@@ -45,6 +69,7 @@ public class GerenciadorInterface {
         dlg.setVisible(true); 
         return dlg;
     }
+    
     
     
     public void janelaLogin() {
@@ -88,9 +113,17 @@ public class GerenciadorInterface {
         janelaProcurarVenda = (DlgPesqVenda) abrirJanela(janPrincipal, janelaProcurarVenda, DlgPesqVenda.class);
     }
     
+   
     
-    
-    
+    public void carregarComboCidades(JComboBox combo) {
+        try {
+            List<Cidade> lista = gerDominio.listarCidades();
+            combo.setModel( new DefaultComboBoxModel( lista.toArray() )  );
+                                   
+        } catch (ClassNotFoundException | SQLException  ex) {
+            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar cidades. " + ex.getMessage() );          
+        } 
+    }
     
     
     
