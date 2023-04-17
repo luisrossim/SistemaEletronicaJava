@@ -43,8 +43,8 @@ public class DlgCadServico extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboTipoEletronico = new javax.swing.JComboBox<>();
+        comboMarca = new javax.swing.JComboBox<>();
         jButton9 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jTextField12 = new javax.swing.JTextField();
@@ -57,6 +57,11 @@ public class DlgCadServico extends javax.swing.JDialog {
         setTitle("Cadastrar Serviço");
         setModal(true);
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
         jButton4.setText("Limpar");
@@ -162,9 +167,9 @@ public class DlgCadServico extends javax.swing.JDialog {
         jFormattedTextField1.setToolTipText("");
         jPanel3.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 80, -1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Eletronico"));
 
-        jLabel13.setText("Eletrônico:");
+        jLabel13.setText("Tipo:");
 
         jLabel14.setText("Marca:");
 
@@ -183,8 +188,8 @@ public class DlgCadServico extends javax.swing.JDialog {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, 247, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboTipoEletronico, 0, 267, Short.MAX_VALUE)
+                    .addComponent(comboMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,13 +203,13 @@ public class DlgCadServico extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboTipoEletronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton8))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -294,6 +299,11 @@ public class DlgCadServico extends javax.swing.JDialog {
         gerenciadorI.janelaProcurarCliente();
     }//GEN-LAST:event_btnProcurarClienteActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        gerenciadorI.carregarComboTipoEletronicos(comboTipoEletronico);
+        gerenciadorI.carregarComboMarcas(comboMarca);
+    }//GEN-LAST:event_formComponentShown
+
     
     
     
@@ -310,12 +320,12 @@ public class DlgCadServico extends javax.swing.JDialog {
     private javax.swing.JCheckBox checkNaoFuncional;
     private javax.swing.JCheckBox checkNaoLiga;
     private javax.swing.JCheckBox checkTelaDefeito;
+    private javax.swing.JComboBox<String> comboMarca;
+    private javax.swing.JComboBox<String> comboTipoEletronico;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

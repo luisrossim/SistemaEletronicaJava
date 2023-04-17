@@ -3,15 +3,18 @@ package gerenciadorTarefas;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import dominio.Cidade;
+import dominio.Marca;
+import dominio.TipoEletronico;
+import interfaces.DlgCadCidade;
 import interfaces.DlgCadCliente;
-import interfaces.DlgCadProdutoRef;
+import interfaces.DlgCadEletronicoRef;
 import interfaces.DlgCadServico;
 import interfaces.DlgLogin;
 import interfaces.DlgPesqCliente;
-import interfaces.DlgPesqProduto;
+import interfaces.DlgPesqEletronico;
 import interfaces.DlgPesqServico;
 import interfaces.DlgPesqVenda;
-import interfaces.DlgVendaProdutoRef;
+import interfaces.DlgVendaEletronicoRef;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -30,13 +33,13 @@ public class GerenciadorInterface {
     private FrmPrincipal janPrincipal = null;
     private DlgCadCliente janCadCliente = null;
     private DlgCadServico janCadServico = null;
-    private DlgCadProdutoRef janCadProdutoRef = null;
-    private DlgVendaProdutoRef janVendaProdutoRef = null;
+    private DlgCadEletronicoRef janCadEletronicoRef = null;
+    private DlgVendaEletronicoRef janVendaEletronicoRef = null;
     private DlgPesqCliente janelaProcurarCliente = null;
     private DlgPesqServico janelaProcurarServico = null;
-    private DlgPesqProduto janelaProcurarProduto = null;
+    private DlgPesqEletronico janelaProcurarEletronico = null;
     private DlgPesqVenda janelaProcurarVenda = null;
-    
+    private DlgCadCidade janelaCadCidade = null;
     
     
     
@@ -89,12 +92,12 @@ public class GerenciadorInterface {
         janCadServico = (DlgCadServico) abrirJanela(janPrincipal, janCadServico, DlgCadServico.class);
     }
     
-    public void janelaCadProdutoRef(){
-        janCadProdutoRef = (DlgCadProdutoRef) abrirJanela(janPrincipal, janCadProdutoRef, DlgCadProdutoRef.class);
+    public void janelaCadEletronicoRef(){
+        janCadEletronicoRef = (DlgCadEletronicoRef) abrirJanela(janPrincipal, janCadEletronicoRef, DlgCadEletronicoRef.class);
     }
     
-    public void janelaVendaProdutoRef(){
-        janVendaProdutoRef = (DlgVendaProdutoRef) abrirJanela(janPrincipal, janVendaProdutoRef, DlgVendaProdutoRef.class);
+    public void janelaVendaEletronicoRef(){
+        janVendaEletronicoRef = (DlgVendaEletronicoRef) abrirJanela(janPrincipal, janVendaEletronicoRef, DlgVendaEletronicoRef.class);
     }
     
     public void janelaProcurarCliente(){
@@ -105,15 +108,20 @@ public class GerenciadorInterface {
         janelaProcurarServico = (DlgPesqServico) abrirJanela(janPrincipal, janelaProcurarServico, DlgPesqServico.class);
     }
     
-    public void janelaProcurarProduto(){
-        janelaProcurarProduto = (DlgPesqProduto) abrirJanela(janPrincipal, janelaProcurarProduto, DlgPesqProduto.class);
+    public void janelaProcurarEletronico(){
+        janelaProcurarEletronico = (DlgPesqEletronico) abrirJanela(janPrincipal, janelaProcurarEletronico, DlgPesqEletronico.class);
     }
     
     public void janelaProcurarVenda(){
         janelaProcurarVenda = (DlgPesqVenda) abrirJanela(janPrincipal, janelaProcurarVenda, DlgPesqVenda.class);
     }
     
+    public void janelaCadCidade(){
+        janelaCadCidade = (DlgCadCidade) abrirJanela(janPrincipal, janelaCadCidade, DlgCadCidade.class);
+    }
+    
    
+    
     
     public void carregarComboCidades(JComboBox combo) {
         try {
@@ -124,6 +132,34 @@ public class GerenciadorInterface {
             JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar cidades. " + ex.getMessage() );          
         } 
     }
+    
+    
+    public void carregarComboTipoEletronicos(JComboBox combo) {
+        try {
+            List<TipoEletronico> lista = gerDominio.listarTipoEletronicos();
+            combo.setModel( new DefaultComboBoxModel( lista.toArray() )  );
+                                   
+        } catch (ClassNotFoundException | SQLException  ex) {
+            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar tipos de eletronicos. " + ex.getMessage() );          
+        } 
+    }
+  
+    
+    public void carregarComboMarcas(JComboBox combo) {
+        try {
+            List<Marca> lista = gerDominio.listarMarcas();
+            combo.setModel( new DefaultComboBoxModel( lista.toArray() )  );
+                                   
+        } catch (ClassNotFoundException | SQLException  ex) {
+            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar marcas. " + ex.getMessage() );          
+        } 
+    }
+    
+    
+    
+    
+    
+    
     
     
     

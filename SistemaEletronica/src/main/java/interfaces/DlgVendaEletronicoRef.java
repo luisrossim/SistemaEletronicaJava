@@ -2,11 +2,11 @@ package interfaces;
 
 import gerenciadorTarefas.GerenciadorInterface;
 
-public class DlgVendaProdutoRef extends javax.swing.JDialog {
+public class DlgVendaEletronicoRef extends javax.swing.JDialog {
 
     GerenciadorInterface gerenciadorI;    
     
-    public DlgVendaProdutoRef(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
+    public DlgVendaEletronicoRef(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
         initComponents();
         this.gerenciadorI = gerenciadorI;
     }
@@ -27,7 +27,7 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        btnProcurarProduto = new javax.swing.JButton();
+        btnProcurarEletronico = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
@@ -37,7 +37,7 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
         jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Vender Produto Reformado");
+        setTitle("Vender Eletronico Reformado");
         setModal(true);
         setResizable(false);
 
@@ -45,7 +45,7 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
         jButton1.setText("Vender");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Vender Produto Reformado");
+        jLabel1.setText("Vender Eletronico Reformado");
 
         btnProcurarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
         btnProcurarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -64,12 +64,12 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
 
         jLabel2.setText("Cliente:");
 
-        jLabel3.setText("Produto:");
+        jLabel3.setText("Eletronico:");
 
-        btnProcurarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarEletronico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarProdutoActionPerformed(evt);
+                btnProcurarEletronicoActionPerformed(evt);
             }
         });
 
@@ -121,7 +121,7 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnProcurarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnProcurarEletronico, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
@@ -151,7 +151,7 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnProcurarProduto, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnProcurarEletronico, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,9 +185,9 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
         gerenciadorI.janelaProcurarCliente();
     }//GEN-LAST:event_btnProcurarClienteActionPerformed
 
-    private void btnProcurarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarProdutoActionPerformed
-        gerenciadorI.janelaProcurarProduto();
-    }//GEN-LAST:event_btnProcurarProdutoActionPerformed
+    private void btnProcurarEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronicoActionPerformed
+        gerenciadorI.janelaProcurarEletronico();
+    }//GEN-LAST:event_btnProcurarEletronicoActionPerformed
 
   
     
@@ -195,7 +195,7 @@ public class DlgVendaProdutoRef extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProcurarCliente;
-    private javax.swing.JButton btnProcurarProduto;
+    private javax.swing.JButton btnProcurarEletronico;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;

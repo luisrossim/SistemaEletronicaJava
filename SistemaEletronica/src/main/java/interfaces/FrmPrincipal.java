@@ -27,24 +27,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         btnVender = new javax.swing.JButton();
-        btnProcurarVenda1 = new javax.swing.JButton();
+        btnProcurarVenda = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        btnProcurarProduto2 = new javax.swing.JButton();
+        btnProcurarEletronico2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         btnCadCliente = new javax.swing.JMenuItem();
         btnCadServico = new javax.swing.JMenuItem();
-        btnCadProduto = new javax.swing.JMenuItem();
+        btnCadEletronico = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         btnProcurarCliente = new javax.swing.JMenuItem();
         btnProcurarServico = new javax.swing.JMenuItem();
-        btnProcurarProduto = new javax.swing.JMenuItem();
+        btnProcurarEletronico = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -65,7 +65,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Cliente", "Produto", "Situação", "Data"
+                "ID", "Cliente", "Eletronico", "Situação", "Data"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -100,7 +100,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Cliente", "Produto", "Data", "Valor"
+                "ID", "Cliente", "Eletronico", "Data", "Valor"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -116,21 +116,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jPanel4.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, 30));
 
-        btnProcurarVenda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarVenda1.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarVenda1ActionPerformed(evt);
+                btnProcurarVendaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnProcurarVenda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 40, 30));
+        jPanel4.add(btnProcurarVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 40, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel1.setText("Área de produtos reformados");
+        jLabel1.setText("Área de aparelhos eletronicos reformados");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setText("Área do cliente e serviços");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aparelhos cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -141,20 +141,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Produto", "Marca", "Valor"
+                "ID", "Eletronico", "Marca", "Valor"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 390, 190));
 
-        btnProcurarProduto2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarProduto2.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarEletronico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarEletronico2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarProduto2ActionPerformed(evt);
+                btnProcurarEletronico2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProcurarProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 40, 30));
+        jPanel1.add(btnProcurarEletronico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 40, 30));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         jMenu1.setDisabledSelectedIcon(null);
@@ -181,14 +181,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(btnCadServico);
 
-        btnCadProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
-        btnCadProduto.setText("Produto");
-        btnCadProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnCadEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
+        btnCadEletronico.setText("Eletronico");
+        btnCadEletronico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadProdutoActionPerformed(evt);
+                btnCadEletronicoActionPerformed(evt);
             }
         });
-        jMenu2.add(btnCadProduto);
+        jMenu2.add(btnCadEletronico);
         jMenu2.add(jSeparator1);
 
         jMenuBar1.add(jMenu2);
@@ -213,14 +213,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(btnProcurarServico);
 
-        btnProcurarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarProduto.setText("Produto");
-        btnProcurarProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarEletronico.setText("Eletronico");
+        btnProcurarEletronico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarProdutoActionPerformed(evt);
+                btnProcurarEletronicoActionPerformed(evt);
             }
         });
-        jMenu5.add(btnProcurarProduto);
+        jMenu5.add(btnProcurarEletronico);
 
         jMenuBar1.add(jMenu5);
 
@@ -295,12 +295,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaCadServico();
     }//GEN-LAST:event_btnCadServicoActionPerformed
 
-    private void btnCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadProdutoActionPerformed
-        gerenciadorI.janelaCadProdutoRef();
-    }//GEN-LAST:event_btnCadProdutoActionPerformed
+    private void btnCadEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadEletronicoActionPerformed
+        gerenciadorI.janelaCadEletronicoRef();
+    }//GEN-LAST:event_btnCadEletronicoActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        gerenciadorI.janelaVendaProdutoRef();
+        gerenciadorI.janelaVendaEletronicoRef();
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnProcurarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarClienteActionPerformed
@@ -311,9 +311,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaProcurarServico();
     }//GEN-LAST:event_btnProcurarServicoActionPerformed
 
-    private void btnProcurarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarProdutoActionPerformed
-        gerenciadorI.janelaProcurarProduto();
-    }//GEN-LAST:event_btnProcurarProdutoActionPerformed
+    private void btnProcurarEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronicoActionPerformed
+        gerenciadorI.janelaProcurarEletronico();
+    }//GEN-LAST:event_btnProcurarEletronicoActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
         System.exit(0);
@@ -323,17 +323,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaCadServico();
     }//GEN-LAST:event_btnNovoServicoActionPerformed
 
-    private void btnProcurarProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarProduto2ActionPerformed
-        gerenciadorI.janelaProcurarVenda();
-    }//GEN-LAST:event_btnProcurarProduto2ActionPerformed
+    private void btnProcurarEletronico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronico2ActionPerformed
+        gerenciadorI.janelaProcurarEletronico();
+    }//GEN-LAST:event_btnProcurarEletronico2ActionPerformed
 
     private void btnProcurarServico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarServico2ActionPerformed
         gerenciadorI.janelaProcurarServico();
     }//GEN-LAST:event_btnProcurarServico2ActionPerformed
 
-    private void btnProcurarVenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVenda1ActionPerformed
+    private void btnProcurarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProcurarVenda1ActionPerformed
+    }//GEN-LAST:event_btnProcurarVendaActionPerformed
 
     
     
@@ -342,15 +342,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCadCliente;
-    private javax.swing.JMenuItem btnCadProduto;
+    private javax.swing.JMenuItem btnCadEletronico;
     private javax.swing.JMenuItem btnCadServico;
     private javax.swing.JButton btnNovoServico;
     private javax.swing.JMenuItem btnProcurarCliente;
-    private javax.swing.JMenuItem btnProcurarProduto;
-    private javax.swing.JButton btnProcurarProduto2;
+    private javax.swing.JMenuItem btnProcurarEletronico;
+    private javax.swing.JButton btnProcurarEletronico2;
     private javax.swing.JMenuItem btnProcurarServico;
     private javax.swing.JButton btnProcurarServico2;
-    private javax.swing.JButton btnProcurarVenda1;
+    private javax.swing.JButton btnProcurarVenda;
     private javax.swing.JButton btnVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

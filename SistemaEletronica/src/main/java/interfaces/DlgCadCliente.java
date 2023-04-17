@@ -1,6 +1,7 @@
 package interfaces;
 
 import gerenciadorTarefas.GerenciadorInterface;
+import javax.swing.JOptionPane;
 
 public class DlgCadCliente extends javax.swing.JDialog {
 
@@ -37,9 +38,10 @@ public class DlgCadCliente extends javax.swing.JDialog {
         jTextField8 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        btnAddCidade = new javax.swing.JButton();
+        btnAttComboCidades = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Cliente");
@@ -90,12 +92,12 @@ public class DlgCadCliente extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 100, 80));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 100, 80));
 
         jLabel11.setText("Telefone:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jPanel1.add(comboCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 180, -1));
+        jPanel1.add(comboCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 170, -1));
 
         try {
             jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("# ####-####")));
@@ -103,7 +105,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, -1));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 180, -1));
+        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 170, -1));
 
         jLabel13.setText("Cidade:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
@@ -127,6 +129,22 @@ public class DlgCadCliente extends javax.swing.JDialog {
         jLabel12.setText("Email:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
+        btnAddCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
+        btnAddCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCidadeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAddCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+
+        btnAttComboCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
+        btnAttComboCidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAttComboCidadesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAttComboCidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
+
         btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,10 +164,6 @@ public class DlgCadCliente extends javax.swing.JDialog {
         jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton3.setBorderPainted(false);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
-        jButton4.setText("Limpar");
-        jButton4.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,10 +177,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -175,14 +186,12 @@ public class DlgCadCliente extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton4))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,18 +212,28 @@ public class DlgCadCliente extends javax.swing.JDialog {
         gerenciadorI.carregarComboCidades(comboCidade);
     }//GEN-LAST:event_formComponentShown
 
+    private void btnAddCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCidadeActionPerformed
+        gerenciadorI.janelaCadCidade();
+    }//GEN-LAST:event_btnAddCidadeActionPerformed
+
+    //TESTE PARA PRATICAR INSERIR NO BANCO E RECEBER PRIMARY KEY (FUNCAO CARREGAR SO DEVE SER CHAMADA UMA VEZ DEVIDO A CRIACAO DOS OBJETOS)
+    private void btnAttComboCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttComboCidadesActionPerformed
+        gerenciadorI.carregarComboCidades(comboCidade);
+    }//GEN-LAST:event_btnAttComboCidadesActionPerformed
+
     
 
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddCidade;
+    private javax.swing.JButton btnAttComboCidades;
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup btngrpSexo;
     private javax.swing.JComboBox<String> comboCidade;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField5;
     private javax.swing.JLabel jLabel1;

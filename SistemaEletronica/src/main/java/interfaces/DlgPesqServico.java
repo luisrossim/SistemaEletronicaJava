@@ -36,7 +36,7 @@ public class DlgPesqServico extends javax.swing.JDialog {
         setModal(true);
         setResizable(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Produto", "Marca", "Data", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Eletronico", "Marca", "Data", " " }));
 
         jLabel2.setText("Filtrar por:");
 
@@ -50,7 +50,7 @@ public class DlgPesqServico extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Produto", "Reparo", "Data", "Valor"
+                "Eletronico", "Reparo", "Data", "Valor"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

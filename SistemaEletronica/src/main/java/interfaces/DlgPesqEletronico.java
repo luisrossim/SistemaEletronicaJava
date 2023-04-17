@@ -2,11 +2,11 @@ package interfaces;
 
 import gerenciadorTarefas.GerenciadorInterface;
 
-public class DlgPesqProduto extends javax.swing.JDialog {
+public class DlgPesqEletronico extends javax.swing.JDialog {
 
     private GerenciadorInterface gerenciadorI;
     
-    public DlgPesqProduto(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
+    public DlgPesqEletronico(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
         initComponents();
         this.gerenciadorI = gerenciadorI;
     }
@@ -46,11 +46,11 @@ public class DlgPesqProduto extends javax.swing.JDialog {
         jButton1.setText("Selecionar");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Procurar Produto Reformado");
+        jLabel1.setText("Procurar Eletronico");
 
         jLabel2.setText("Filtrar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Produto", "Marca", "Data", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eletronico", "Marca", "Data", " " }));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
 
@@ -62,7 +62,7 @@ public class DlgPesqProduto extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Produto", "Reparo", "Data", "Valor"
+                "Eletronico", "Reparo", "Data", "Valor"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

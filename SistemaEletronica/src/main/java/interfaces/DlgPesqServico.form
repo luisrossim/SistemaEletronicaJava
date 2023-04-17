@@ -103,7 +103,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
             <StringItem index="0" value="Nome"/>
-            <StringItem index="1" value="Produto"/>
+            <StringItem index="1" value="Eletronico"/>
             <StringItem index="2" value="Marca"/>
             <StringItem index="3" value="Data"/>
             <StringItem index="4" value=" "/>
@@ -139,7 +139,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Produto" type="java.lang.Object"/>
+                <Column editable="true" title="Eletronico" type="java.lang.Object"/>
                 <Column editable="true" title="Reparo" type="java.lang.Object"/>
                 <Column editable="true" title="Data" type="java.lang.Object"/>
                 <Column editable="true" title="Valor" type="java.lang.Object"/>
