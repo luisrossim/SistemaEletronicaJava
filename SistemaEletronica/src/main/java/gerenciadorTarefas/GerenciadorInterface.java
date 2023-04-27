@@ -69,6 +69,7 @@ public class GerenciadorInterface {
                 JOptionPane.showMessageDialog(parent, "Erro ao abrir a janela " + classe.getName() );
             }
         }        
+        dlg.setLocationRelativeTo(null);
         dlg.setVisible(true); 
         return dlg;
     }

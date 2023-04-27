@@ -2,7 +2,6 @@ package dominio;
 
 public class Cidade {
     private int id_cidade;
-    
     private String nome_cidade;
     
     public Cidade(int id_cidade, String nome_cidade) {
