@@ -77,7 +77,7 @@ public class ClienteDAO {
                 sql = sql + "AND cli.nome_cliente = '" + pesq + "' "; break;
 
             case 1:
-                break;
+                sql = sql + "AND cli.id_cliente = " + pesq + " "; break;
         }
         
         ResultSet rs = stmt.executeQuery(sql);
@@ -85,9 +85,9 @@ public class ClienteDAO {
         // Registros em Objetos
         while ( rs.next() ) {
             
-            Cidade cid = new Cidade(rs.getInt("cid.id_cidade") , rs.getString("cid.nome_cidade"));
+            Cidade cid = new Cidade(rs.getInt("id_cidade") , rs.getString("nome_cidade"));
                        
-            Cliente cli = new Cliente( rs.getString("cli.nome_cliente"), rs.getString("telefone"), rs.getString("cpf"),
+            Cliente cli = new Cliente( rs.getString("nome_cliente"), rs.getString("telefone"), rs.getString("cpf"),
                 rs.getString("sexo").charAt(0), rs.getString("email"), cid);
             
             cli.setIdCliente( rs.getInt("id_cliente") );

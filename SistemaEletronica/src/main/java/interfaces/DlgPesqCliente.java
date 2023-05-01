@@ -151,7 +151,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
             
             for (Cliente cli : lista ) {
                 // ADICIONAR LINHA NA TABELA        
-                ( (DefaultTableModel) tblClientes.getModel() ).addRow( cli.toArray() );                
+                ( (DefaultTableModel) tblClientes.getModel() ).addRow( cli.toArray() );
             }
             
         } catch (ClassNotFoundException | SQLException ex) {

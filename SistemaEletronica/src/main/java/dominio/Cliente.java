@@ -80,7 +80,7 @@ public class Cliente {
     
     
     public Object[] toArray() throws ParseException {
-        return new Object[] { this, cidade};
+        return new Object[] { idCliente, this, cpf, cidade.getNome_cidade(), email, telefone};
     }
     
     @Override
