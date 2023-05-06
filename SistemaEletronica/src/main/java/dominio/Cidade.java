@@ -45,8 +45,6 @@ public class Cidade implements Serializable {
     
 
     
-    
-    
     @Override
     public String toString() {
         return this.nomeCidade;

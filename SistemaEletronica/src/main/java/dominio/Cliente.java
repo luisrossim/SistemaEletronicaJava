@@ -3,6 +3,7 @@ package dominio;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -32,8 +33,11 @@ public class Cliente implements Serializable {
     @JoinColumn(name = "idCidade")
     private Cidade cidade;
     
-
+    @OneToMany ( mappedBy = "cliente", fetch =  FetchType.LAZY)
+    private List<Servico> servicos;
     
+    @OneToMany ( mappedBy = "cliente", fetch =  FetchType.LAZY)
+    private List<VendaReformado> vendas;
     
     
     public Cliente(String nome, String telefone, String cpf, char sexo, String email, Cidade cidade) {

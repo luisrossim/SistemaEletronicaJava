@@ -33,10 +33,12 @@ public class Servico implements Serializable {
     @Column(length = 10)
     private String dataFim;
     
-    @Transient
+    @ManyToOne ( fetch = FetchType.EAGER)
+    @JoinColumn (name = "idCliente")
     private Cliente cliente;
     
-    @Transient
+    @ManyToOne ( fetch = FetchType.EAGER)
+    @JoinColumn (name = "idEletronicoCli")
     private EletronicoCliente eletronicoCliente;
 
     

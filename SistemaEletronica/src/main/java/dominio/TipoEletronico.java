@@ -15,7 +15,8 @@ public class TipoEletronico implements Serializable {
     @Column(length = 50)
     private String nomeTipoEletronico;
     
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "idMarca")
     private Marca marca;
     
     

@@ -21,10 +21,12 @@ public class VendaReformado implements Serializable {
     @Column(length = 20)
     private int valorFinal;
     
-    @Transient
+    @ManyToOne ( fetch = FetchType.EAGER)
+    @JoinColumn (name = "idCliente")
     private Cliente cliente;
     
-    @Transient
+    @OneToOne (fetch = FetchType.EAGER)
+    @JoinColumn (name = "idEletronicoRef")
     private EletronicoReformado eletronicoReformado;
 
     

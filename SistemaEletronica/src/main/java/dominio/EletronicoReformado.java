@@ -21,8 +21,13 @@ public class EletronicoReformado implements Serializable {
     @Column(length = 20)
     private int valor;
     
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "idTipoEletronico")
     private TipoEletronico tipo;
+    
+    @OneToOne ( mappedBy = "eletronicoReformado")
+    @JoinColumn (name = "idEletronicoRef")
+    private VendaReformado venda;
 
     
     

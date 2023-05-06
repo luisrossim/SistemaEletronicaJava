@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -9,7 +10,7 @@ public class EletronicoCliente implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEletronico;
+    private int idEletronicoCli;
     
     @Column(length = 200)
     private String descricao;
@@ -17,14 +18,16 @@ public class EletronicoCliente implements Serializable {
     @Column(length = 200)
     private String problemas;
     
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "idTipoEletronico")
     private TipoEletronico tipo;
 
+    @OneToMany ( mappedBy = "eletronicoCliente", fetch =  FetchType.LAZY)
+    private List<Servico> servicos;
     
     
-    
-    public EletronicoCliente(int idEletronico, String descricao, String problemas, TipoEletronico tipo) {
-        this.idEletronico = idEletronico;
+    public EletronicoCliente(int idEletronicoCli, String descricao, String problemas, TipoEletronico tipo) {
+        this.idEletronicoCli = idEletronicoCli;
         this.descricao = descricao;
         this.problemas = problemas;
         this.tipo = tipo;
@@ -33,12 +36,12 @@ public class EletronicoCliente implements Serializable {
     
     
     
-    public int getIdEletronico() {
-        return idEletronico;
+    public int getIdEletronicoCli() {
+        return idEletronicoCli;
     }
 
-    public void setIdEletronico(int idEletronico) {
-        this.idEletronico = idEletronico;
+    public void setIdEletronicoCli(int idEletronicoCli) {
+        this.idEletronicoCli = idEletronicoCli;
     }
 
     public String getDescricao() {

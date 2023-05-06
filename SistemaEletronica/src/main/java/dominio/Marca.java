@@ -17,6 +17,7 @@ public class Marca implements Serializable {
     
     
 
+    
     public Marca(int idMarca, String nomeMarca) {
         this.idMarca = idMarca;
         this.nomeMarca = nomeMarca;
@@ -42,9 +43,7 @@ public class Marca implements Serializable {
     }
     
     
-
     
- 
     
 
     @Override
