@@ -2,7 +2,7 @@ package gerenciadorTarefas;
 
 import dao.CidadeDAO;
 import dao.ClienteDAO;
-import dao.ConnectionPSQL;
+import dao.ConnectionHibernate;
 import dao.MarcaDAO;
 import dao.TipoEletronicoDAO;
 import dominio.Cidade;
@@ -21,7 +21,7 @@ public class GerenciadorDominio {
     
     
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
-        ConnectionPSQL.getInstance();
+        ConnectionHibernate.getSessionFactory();
         cidadeDao = new CidadeDAO();
         tipoEletronicoDao = new TipoEletronicoDAO();
         marcaDao = new MarcaDAO();

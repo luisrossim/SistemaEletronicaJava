@@ -1,39 +1,43 @@
 package dominio;
 
 public class Cidade {
-    private int id_cidade;
-    private String nome_cidade;
+    private int idCidade;
+    private String nomeCidade;
     
-    public Cidade(int id_cidade, String nome_cidade) {
-        this.id_cidade = id_cidade;
-        this.nome_cidade = nome_cidade;
+    
+    
+    
+    public Cidade(int idCidade, String nomeCidade) {
+        this.idCidade = idCidade;
+        this.nomeCidade = nomeCidade;
+    }
+    
+    
+    
+
+    public int getIdCidade() {
+        return idCidade;
+    }
+
+    public void setIdCidade(int idCidade) {
+        this.idCidade = idCidade;
+    }
+
+    public String getNomeCidade() {
+        return nomeCidade;
+    }
+
+    public void setNomeCidade(String nomeCidade) {
+        this.nomeCidade = nomeCidade;
     }
     
     
 
-    public int getId_cidade() {
-        return id_cidade;
-    }
-
-    public void setId_cidade(int id_cidade) {
-        this.id_cidade = id_cidade;
-    }
-
-    public String getNome_cidade() {
-        return nome_cidade;
-    }
-
-    public void setNome_cidade(String nome_cidade) {
-        this.nome_cidade = nome_cidade;
-    }
-
-    
-    
     
     
     
     @Override
     public String toString() {
-        return this.nome_cidade;
+        return this.nomeCidade;
     }
 }
