@@ -1,9 +1,23 @@
 package dominio;
 
-public class EletronicoCliente {
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+@Entity
+public class EletronicoCliente implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEletronico;
+    
+    @Column(length = 200)
     private String descricao;
+    
+    @Column(length = 200)
     private String problemas;
+    
+    @Transient
     private TipoEletronico tipo;
 
     

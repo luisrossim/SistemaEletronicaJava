@@ -1,7 +1,18 @@
 package dominio;
 
-public class Cidade {
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+
+@Entity
+public class Cidade implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCidade;
+    
+    @Column(length = 50)
     private String nomeCidade;
     
     

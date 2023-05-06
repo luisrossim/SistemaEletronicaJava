@@ -1,9 +1,21 @@
 package dominio;
 
-public class TipoEletronico {
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+
+@Entity
+public class TipoEletronico implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTipoEletronico;
+    
+    @Column(length = 50)
     private String nomeTipoEletronico;
+    
+    @Transient
     private Marca marca;
     
     

@@ -1,9 +1,21 @@
 package dominio;
 
-public class Marca {
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+
+@Entity
+public class Marca implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMarca;
+    
+    @Column(length = 50)
     private String nomeMarca;
+    
+    
 
     public Marca(int idMarca, String nomeMarca) {
         this.idMarca = idMarca;

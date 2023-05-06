@@ -1,17 +1,41 @@
 package dominio;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
+import javax.persistence.*;
 
-public class Cliente {
+
+@Entity
+public class Cliente implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
+    
+    @Column(length = 50)
     private String nome;
-    private String telefone;  
+    
+    @Column(length = 50)
+    private String telefone;
+    
+    @Column(updatable = false, length = 14, nullable = false)
     private String cpf;  
+    
+    @Column(length = 1)
     private char sexo;
+    
+    @Column(length = 100)
     private String email;
+    
+    @ManyToOne
+    @JoinColumn(name = "idCidade")
     private Cidade cidade;
+    
 
+    
+    
+    
     public Cliente(String nome, String telefone, String cpf, char sexo, String email, Cidade cidade) {
         this.nome = nome;
         this.telefone = telefone;
@@ -21,6 +45,9 @@ public class Cliente {
         this.cidade = cidade;
     }
 
+    
+    
+    
     public int getIdCliente() {
         return idCliente;
     }
@@ -69,19 +96,21 @@ public class Cliente {
         this.email = email;
     }
 
-    public Cidade getCidade() {
+    
+    public Cidade getCidade() {;
         return cidade;
     }
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-    
+   
     
     
     public Object[] toArray() throws ParseException {
         return new Object[] { idCliente, this, cpf, cidade.getNomeCidade(), email, telefone};
     }
+    
     
     @Override
     public String toString() {

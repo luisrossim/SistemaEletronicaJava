@@ -1,15 +1,42 @@
 package dominio;
 
-public class Servico {
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+
+@Entity
+public class Servico implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idServico;
+    
+    @Column(length = 50)
     private String localServico;
+    
+    @Column(length = 200)
     private String descricao;
+    
+    @Column(length = 200) 
     private String reparos;
+    
+    @Column(nullable = false)
     private boolean finalizado;
+    
+    @Column(length = 20)
     private int valor;
+     
+    @Column(length = 10)
     private String dataInicio;
+    
+    @Column(length = 10)
     private String dataFim;
+    
+    @Transient
     private Cliente cliente;
+    
+    @Transient
     private EletronicoCliente eletronicoCliente;
 
     
