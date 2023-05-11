@@ -21,7 +21,7 @@ public class EletronicoReformado implements Serializable {
     @Column(length = 20)
     private int valor;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idTipoEletronico")
     private TipoEletronico tipo;
     
@@ -31,8 +31,7 @@ public class EletronicoReformado implements Serializable {
 
     
     
-    public EletronicoReformado(int idEletronicoRef, String descricao, String reparos, int valor, TipoEletronico tipo) {
-        this.idEletronicoRef = idEletronicoRef;
+    public EletronicoReformado(String descricao, String reparos, int valor, TipoEletronico tipo) {
         this.descricao = descricao;
         this.reparos = reparos;
         this.valor = valor;

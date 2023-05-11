@@ -52,7 +52,7 @@ public class GerenciadorDominio {
         return cidade.getIdCidade();
     }
     
-    public int inserirTipoEletronico(String nome, Marca marca) throws SQLException {
+    public int inserirTipoEletronico(String nome, Marca marca) {
         TipoEletronico tipo = new TipoEletronico(nome, marca);
         tipoEletronicoDao.inserir(tipo);
         return tipo.getIdTipoEletronico();
