@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 
 
@@ -27,11 +28,11 @@ public class Servico implements Serializable {
     @Column(length = 20)
     private int valor;
      
-    @Column(length = 10)
-    private String dataInicio;
+    @Temporal(TemporalType.DATE)
+    private Date dataInicio;
     
-    @Column(length = 10)
-    private String dataFim;
+    @Temporal(TemporalType.DATE)
+    private Date dataFim;
     
     @ManyToOne ( fetch = FetchType.EAGER)
     @JoinColumn (name = "idCliente")
@@ -44,7 +45,7 @@ public class Servico implements Serializable {
     
     
     
-    public Servico(int idServico, String localServico, String descricao, String reparos, boolean finalizado, int valor, String dataInicio, String dataFim, Cliente cliente, EletronicoCliente eletronicoCliente) {
+    public Servico(int idServico, String localServico, String descricao, String reparos, boolean finalizado, int valor, Date dataInicio, Date dataFim, Cliente cliente, EletronicoCliente eletronicoCliente) {
         this.idServico = idServico;
         this.localServico = localServico;
         this.descricao = descricao;
@@ -108,19 +109,19 @@ public class Servico implements Serializable {
         this.valor = valor;
     }
 
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 

@@ -21,8 +21,9 @@ public class TipoEletronico implements Serializable {
     
     
 
-    public TipoEletronico(int idTipoEletronico, String nomeTipoEletronico, Marca marca) {
-        this.idTipoEletronico = idTipoEletronico;
+    public TipoEletronico(){}
+    
+    public TipoEletronico(String nomeTipoEletronico, Marca marca) {
         this.nomeTipoEletronico = nomeTipoEletronico;
         this.marca = marca;
     }

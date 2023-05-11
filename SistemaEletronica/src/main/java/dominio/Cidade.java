@@ -17,9 +17,9 @@ public class Cidade implements Serializable {
     
     
     
+    public Cidade(){}
     
-    public Cidade(int idCidade, String nomeCidade) {
-        this.idCidade = idCidade;
+    public Cidade(String nomeCidade) {
         this.nomeCidade = nomeCidade;
     }
     

@@ -342,11 +342,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProcurarServico2ActionPerformed
 
     private void btnProcurarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendaActionPerformed
-        // TODO add your handling code here:
+        gerenciadorI.janelaProcurarVenda();
     }//GEN-LAST:event_btnProcurarVendaActionPerformed
 
     private void btnCadastrarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRefActionPerformed
-        // TODO add your handling code here:
+        gerenciadorI.janelaCadEletronicoRef();
     }//GEN-LAST:event_btnCadastrarRefActionPerformed
 
     

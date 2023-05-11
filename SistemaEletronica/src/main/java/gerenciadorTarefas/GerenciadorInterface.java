@@ -1,13 +1,14 @@
 package gerenciadorTarefas;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import dominio.Cidade;
+import dominio.Cliente;
 import dominio.Marca;
 import dominio.TipoEletronico;
 import interfaces.DlgCadCidade;
 import interfaces.DlgCadCliente;
 import interfaces.DlgCadEletronicoRef;
+import interfaces.DlgCadMarca;
 import interfaces.DlgCadServico;
 import interfaces.DlgLogin;
 import interfaces.DlgPesqCliente;
@@ -32,14 +33,15 @@ public class GerenciadorInterface {
     private DlgLogin janLogin = null;
     private FrmPrincipal janPrincipal = null;
     private DlgCadCliente janCadCliente = null;
+    private DlgCadCidade janCadCidade = null;
     private DlgCadServico janCadServico = null;
     private DlgCadEletronicoRef janCadEletronicoRef = null;
+    private DlgCadMarca janCadMarca = null;
     private DlgVendaEletronicoRef janVendaEletronicoRef = null;
-    private DlgPesqCliente janelaProcurarCliente = null;
-    private DlgPesqServico janelaProcurarServico = null;
-    private DlgPesqEletronico janelaProcurarEletronico = null;
-    private DlgPesqVenda janelaProcurarVenda = null;
-    private DlgCadCidade janelaCadCidade = null;
+    private DlgPesqCliente janProcurarCliente = null;
+    private DlgPesqServico janProcurarServico = null;
+    private DlgPesqEletronico janProcurarEletronico = null;
+    private DlgPesqVenda janProcurarVenda = null;
     
     
     
@@ -97,28 +99,34 @@ public class GerenciadorInterface {
         janCadEletronicoRef = (DlgCadEletronicoRef) abrirJanela(janPrincipal, janCadEletronicoRef, DlgCadEletronicoRef.class);
     }
     
+    
+    public void janelaCadMarca(){
+        janCadMarca = (DlgCadMarca) abrirJanela(janPrincipal, janCadMarca, DlgCadMarca.class);
+    }
+    
     public void janelaVendaEletronicoRef(){
         janVendaEletronicoRef = (DlgVendaEletronicoRef) abrirJanela(janPrincipal, janVendaEletronicoRef, DlgVendaEletronicoRef.class);
     }
     
-    public void janelaProcurarCliente(){
-        janelaProcurarCliente = (DlgPesqCliente) abrirJanela(janPrincipal, janelaProcurarCliente, DlgPesqCliente.class);
+    public Cliente janelaProcurarCliente(){
+        janProcurarCliente = (DlgPesqCliente) abrirJanela(janPrincipal, janProcurarCliente, DlgPesqCliente.class);
+        return janProcurarCliente.getCliente();
     }
     
     public void janelaProcurarServico(){
-        janelaProcurarServico = (DlgPesqServico) abrirJanela(janPrincipal, janelaProcurarServico, DlgPesqServico.class);
+        janProcurarServico = (DlgPesqServico) abrirJanela(janPrincipal, janProcurarServico, DlgPesqServico.class);
     }
     
     public void janelaProcurarEletronico(){
-        janelaProcurarEletronico = (DlgPesqEletronico) abrirJanela(janPrincipal, janelaProcurarEletronico, DlgPesqEletronico.class);
+        janProcurarEletronico = (DlgPesqEletronico) abrirJanela(janPrincipal, janProcurarEletronico, DlgPesqEletronico.class);
     }
     
     public void janelaProcurarVenda(){
-        janelaProcurarVenda = (DlgPesqVenda) abrirJanela(janPrincipal, janelaProcurarVenda, DlgPesqVenda.class);
+        janProcurarVenda = (DlgPesqVenda) abrirJanela(janPrincipal, janProcurarVenda, DlgPesqVenda.class);
     }
     
     public void janelaCadCidade(){
-        janelaCadCidade = (DlgCadCidade) abrirJanela(janPrincipal, janelaCadCidade, DlgCadCidade.class);
+        janCadCidade = (DlgCadCidade) abrirJanela(janPrincipal, janCadCidade, DlgCadCidade.class);
     }
     
    
@@ -142,7 +150,7 @@ public class GerenciadorInterface {
                                    
         } catch (ClassNotFoundException | SQLException  ex) {
             JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar tipos de eletronicos. " + ex.getMessage() );          
-        } 
+        }
     }
   
     

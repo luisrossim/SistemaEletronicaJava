@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import org.hibernate.HibernateException;
 
 public class DlgPesqCliente extends javax.swing.JDialog {
 
@@ -19,12 +20,12 @@ public class DlgPesqCliente extends javax.swing.JDialog {
     private Cliente cliSelecionado;
     
     public DlgPesqCliente(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
+        super(parent, modal);
         initComponents();
         this.gerenciadorI = gerenciadorI;
         cliSelecionado = null;
         setLocationRelativeTo(null);
     }
-    
     
 
     public Cliente getCliente() {
@@ -46,6 +47,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         tblClientes = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnExcluirCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Procurar Cliente");
@@ -66,15 +68,20 @@ public class DlgPesqCliente extends javax.swing.JDialog {
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "CPF", "Cidade", "Email", "Telefone"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblClientes);
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
@@ -88,6 +95,13 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
         jButton1.setText("Selecionar");
 
+        btnExcluirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/remove.png"))); // NOI18N
+        btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +112,9 @@ public class DlgPesqCliente extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -114,7 +130,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,7 +145,9 @@ public class DlgPesqCliente extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
@@ -138,20 +156,21 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    
     private void btnPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqClienteActionPerformed
         try {
             List<Cliente> lista = gerenciadorI.getGerDominio().pesquisarCliente(txtPesq.getText(), cmbTipo.getSelectedIndex() );
             
-            // APAGA as linhas da tabela
             ( (DefaultTableModel) tblClientes.getModel() ).setNumRows(0);
             
-            for (Cliente cli : lista ) {
-                // ADICIONAR LINHA NA TABELA        
-                ( (DefaultTableModel) tblClientes.getModel() ).addRow( cli.toArray() );
+            for (Cliente cliente : lista ) {     
+                ( (DefaultTableModel) tblClientes.getModel() ).addRow( cliente.toArray() );
             }
             
         } catch (ClassNotFoundException | SQLException ex) {
@@ -162,8 +181,32 @@ public class DlgPesqCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPesqClienteActionPerformed
 
     
+    private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
+        int linha = tblClientes.getSelectedRow();
+        if ( linha >= 0 ) {
+            
+            try {
+                Cliente cliente = (Cliente) tblClientes.getValueAt(linha, 1);
+                System.out.println(cliente.getNome());
+                if ( JOptionPane.showConfirmDialog(this, "Deseja realmente excluir esse cliente?", "Excluir cliente", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION ) {
+                    gerenciadorI.getGerDominio().excluirCliente(cliente);
+                    ( (DefaultTableModel) tblClientes.getModel() ).removeRow(linha);
+                    JOptionPane.showMessageDialog(this, "Cliente " + cliente.getNome() + " excluído com sucesso.", "Excluir cliente", JOptionPane.ERROR_MESSAGE  );
+                }
+                
+            } catch (HibernateException ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERRO ao excluir cliente", JOptionPane.ERROR_MESSAGE  );
+            }             
+        }        
+        else {
+            JOptionPane.showMessageDialog(this,"Selecione uma linha.", "Excluir cliente", JOptionPane.ERROR_MESSAGE  );
+        }
+    }//GEN-LAST:event_btnExcluirClienteActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnPesqCliente;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbTipo;

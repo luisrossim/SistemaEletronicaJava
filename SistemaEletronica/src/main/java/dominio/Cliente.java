@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 
@@ -39,6 +40,10 @@ public class Cliente implements Serializable {
     @OneToMany ( mappedBy = "cliente", fetch =  FetchType.LAZY)
     private List<VendaReformado> vendas;
     
+    
+    
+    
+    public Cliente(){}
     
     public Cliente(String nome, String telefone, String cpf, char sexo, String email, Cidade cidade) {
         this.nome = nome;
@@ -119,5 +124,26 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return nome;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.idCliente != other.idCliente) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        return true;
     }
 }

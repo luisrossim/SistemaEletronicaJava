@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 
 
@@ -12,8 +13,8 @@ public class VendaReformado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idVenda;
     
-    @Column(length = 10)
-    private String dataVenda;
+    @Temporal(TemporalType.DATE)
+    private Date dataVenda;
     
     @Column(length = 200)
     private String descricao;
@@ -31,7 +32,7 @@ public class VendaReformado implements Serializable {
 
     
     
-    public VendaReformado(int idVenda, String dataVenda, String descricao, int valorFinal, Cliente cliente, EletronicoReformado eletronicoReformado) {
+    public VendaReformado(int idVenda, Date dataVenda, String descricao, int valorFinal, Cliente cliente, EletronicoReformado eletronicoReformado) {
         this.idVenda = idVenda;
         this.dataVenda = dataVenda;
         this.descricao = descricao;
@@ -51,11 +52,11 @@ public class VendaReformado implements Serializable {
         this.idVenda = idVenda;
     }
 
-    public String getDataVenda() {
+    public Date getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(String dataVenda) {
+    public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
     }
 

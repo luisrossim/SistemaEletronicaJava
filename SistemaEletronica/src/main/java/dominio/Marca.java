@@ -16,10 +16,11 @@ public class Marca implements Serializable {
     private String nomeMarca;
     
     
-
     
-    public Marca(int idMarca, String nomeMarca) {
-        this.idMarca = idMarca;
+
+    public Marca() {}
+    
+    public Marca(String nomeMarca) {
         this.nomeMarca = nomeMarca;
     }
 
