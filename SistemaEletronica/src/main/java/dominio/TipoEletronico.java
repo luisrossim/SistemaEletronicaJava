@@ -61,6 +61,6 @@ public class TipoEletronico implements Serializable {
     
     @Override
     public String toString() {
-        return this.nomeTipoEletronico;
+        return (this.nomeTipoEletronico + " (" + this.marca.getNomeMarca() + ")");
     }
 }

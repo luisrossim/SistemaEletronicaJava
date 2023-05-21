@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -38,15 +39,14 @@ public class Servico implements Serializable {
     @JoinColumn (name = "idCliente")
     private Cliente cliente;
     
-    @ManyToOne ( fetch = FetchType.EAGER)
+    @ManyToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn (name = "idEletronicoCli")
     private EletronicoCliente eletronicoCliente;
 
     
+    public Servico(){}
     
-    
-    public Servico(int idServico, String localServico, String descricao, String reparos, boolean finalizado, int valor, Date dataInicio, Date dataFim, Cliente cliente, EletronicoCliente eletronicoCliente) {
-        this.idServico = idServico;
+    public Servico(String localServico, String descricao, String reparos, boolean finalizado, int valor, Date dataInicio, Date dataFim, Cliente cliente, EletronicoCliente eletronicoCliente) {
         this.localServico = localServico;
         this.descricao = descricao;
         this.reparos = reparos;
@@ -140,6 +140,15 @@ public class Servico implements Serializable {
     public void setEletronicoCliente(EletronicoCliente eletronicoCliente) {
         this.eletronicoCliente = eletronicoCliente;
     }
-   
     
+    
+    
+    
+    public Object[] toArray() throws ParseException {
+        return new Object[] { idServico, cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
+    }
+    
+    public Object[] toArray2() throws ParseException {
+        return new Object[] { cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
+    }
 }

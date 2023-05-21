@@ -46,7 +46,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSelecionar = new javax.swing.JButton();
         btnExcluirCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -84,18 +84,23 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblClientes);
 
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
-        btnVoltar.setText("Voltar");
+        btnVoltar.setText("Cancelar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
-        jButton1.setText("Selecionar");
+        btnSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
+        btnSelecionar.setText("Selecionar");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
 
         btnExcluirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/remove.png"))); // NOI18N
+        btnExcluirCliente.setText("Excluir");
         btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirClienteActionPerformed(evt);
@@ -112,9 +117,9 @@ public class DlgPesqCliente extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnExcluirCliente)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -146,7 +151,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -159,7 +164,8 @@ public class DlgPesqCliente extends javax.swing.JDialog {
     
     
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.dispose();
+        cliSelecionado = null;
+        this.setVisible(false);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     
@@ -203,14 +209,26 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        int linha = tblClientes.getSelectedRow();
+        if ( linha >= 0 ) {
+            cliSelecionado = (Cliente) tblClientes.getValueAt(linha, 1);
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Selecione uma linha.", "Pesquisar cliente", JOptionPane.ERROR_MESSAGE  );
+        }
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSelecionarActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnPesqCliente;
+    private javax.swing.JButton btnSelecionar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbTipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

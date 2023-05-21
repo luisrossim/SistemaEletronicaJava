@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import javax.persistence.*;
 
 
@@ -21,7 +22,7 @@ public class EletronicoReformado implements Serializable {
     @Column(length = 20)
     private int valor;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idTipoEletronico")
     private TipoEletronico tipo;
     
@@ -30,6 +31,8 @@ public class EletronicoReformado implements Serializable {
     private VendaReformado venda;
 
     
+    
+    public EletronicoReformado(){}
     
     public EletronicoReformado(String descricao, String reparos, int valor, TipoEletronico tipo) {
         this.descricao = descricao;
@@ -81,5 +84,13 @@ public class EletronicoReformado implements Serializable {
         this.tipo = tipo;
     }
 
+    
+    public Object[] toArray() throws ParseException {
+        return new Object[] { idEletronicoRef, tipo.toString(), descricao, reparos, valor};
+    }
+    
+    public Object[] toArray2() throws ParseException {
+        return new Object[] { tipo.toString(), descricao, reparos, valor};
+    }
    
 }

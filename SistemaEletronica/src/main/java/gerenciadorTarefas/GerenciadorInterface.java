@@ -10,6 +10,7 @@ import interfaces.DlgCadCliente;
 import interfaces.DlgCadEletronicoRef;
 import interfaces.DlgCadMarca;
 import interfaces.DlgCadServico;
+import interfaces.DlgCadTipoEletronico;
 import interfaces.DlgLogin;
 import interfaces.DlgPesqCliente;
 import interfaces.DlgPesqEletronico;
@@ -37,6 +38,7 @@ public class GerenciadorInterface {
     private DlgCadServico janCadServico = null;
     private DlgCadEletronicoRef janCadEletronicoRef = null;
     private DlgCadMarca janCadMarca = null;
+    private DlgCadTipoEletronico janCadTipo = null;
     private DlgVendaEletronicoRef janVendaEletronicoRef = null;
     private DlgPesqCliente janProcurarCliente = null;
     private DlgPesqServico janProcurarServico = null;
@@ -78,6 +80,8 @@ public class GerenciadorInterface {
     
     
     
+    
+    
     public void janelaLogin() {
         janLogin = (DlgLogin) abrirJanela(null, janLogin, DlgLogin.class);
     }
@@ -99,9 +103,8 @@ public class GerenciadorInterface {
         janCadEletronicoRef = (DlgCadEletronicoRef) abrirJanela(janPrincipal, janCadEletronicoRef, DlgCadEletronicoRef.class);
     }
     
-    
-    public void janelaCadMarca(){
-        janCadMarca = (DlgCadMarca) abrirJanela(janPrincipal, janCadMarca, DlgCadMarca.class);
+    public void janelaCadTipo(){
+        janCadTipo = (DlgCadTipoEletronico) abrirJanela(janPrincipal, janCadTipo, DlgCadTipoEletronico.class);
     }
     
     public void janelaVendaEletronicoRef(){
@@ -111,6 +114,10 @@ public class GerenciadorInterface {
     public Cliente janelaProcurarCliente(){
         janProcurarCliente = (DlgPesqCliente) abrirJanela(janPrincipal, janProcurarCliente, DlgPesqCliente.class);
         return janProcurarCliente.getCliente();
+    }
+    
+    public void janelaCadMarca(){
+        janCadMarca = (DlgCadMarca) abrirJanela(janPrincipal, janCadMarca, DlgCadMarca.class);
     }
     
     public void janelaProcurarServico(){
@@ -132,6 +139,7 @@ public class GerenciadorInterface {
    
     
     
+    
     public void carregarComboCidades(JComboBox combo) {
         try {
             List<Cidade> lista = gerDominio.listarCidades();
@@ -142,7 +150,6 @@ public class GerenciadorInterface {
         } 
     }
     
-    
     public void carregarComboTipoEletronicos(JComboBox combo) {
         try {
             List<TipoEletronico> lista = gerDominio.listarTipoEletronicos();
@@ -152,7 +159,6 @@ public class GerenciadorInterface {
             JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar tipos de eletronicos. " + ex.getMessage() );          
         }
     }
-  
     
     public void carregarComboMarcas(JComboBox combo) {
         try {

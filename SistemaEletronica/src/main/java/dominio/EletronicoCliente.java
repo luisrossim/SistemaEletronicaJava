@@ -26,8 +26,9 @@ public class EletronicoCliente implements Serializable {
     private List<Servico> servicos;
     
     
-    public EletronicoCliente(int idEletronicoCli, String descricao, String problemas, TipoEletronico tipo) {
-        this.idEletronicoCli = idEletronicoCli;
+    public EletronicoCliente(){}
+    
+    public EletronicoCliente(String descricao, String problemas, TipoEletronico tipo) {
         this.descricao = descricao;
         this.problemas = problemas;
         this.tipo = tipo;

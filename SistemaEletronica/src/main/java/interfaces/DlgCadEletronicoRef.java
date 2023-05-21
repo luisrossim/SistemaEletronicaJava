@@ -1,7 +1,8 @@
 package interfaces;
 
-import dominio.Marca;
+import dominio.TipoEletronico;
 import gerenciadorTarefas.GerenciadorInterface;
+import javax.swing.JOptionPane;
 
 public class DlgCadEletronicoRef extends javax.swing.JDialog {
 
@@ -24,24 +25,14 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         txtValor = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        chkTelevisao = new javax.swing.JCheckBox();
-        chkMonitor = new javax.swing.JCheckBox();
-        chkSom = new javax.swing.JCheckBox();
-        chkVG = new javax.swing.JCheckBox();
-        chkDVD = new javax.swing.JCheckBox();
-        chkControle = new javax.swing.JCheckBox();
-        chkComputador = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        txtNomeTipo = new javax.swing.JTextField();
-        btnAddMarca = new javax.swing.JButton();
-        comboMarca = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtReparos = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        comboTipo = new javax.swing.JComboBox<>();
+        cadTipoEletronico = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnCadEletronicoRef = new javax.swing.JButton();
 
@@ -66,67 +57,7 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtValor.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor"));
-        jPanel1.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 80, -1));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo Eletronico"));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        gpTipo.add(chkTelevisao);
-        chkTelevisao.setMnemonic('a');
-        chkTelevisao.setText("Televisão");
-        jPanel2.add(chkTelevisao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 20));
-
-        gpTipo.add(chkMonitor);
-        chkMonitor.setMnemonic('b');
-        chkMonitor.setText("Monitor");
-        jPanel2.add(chkMonitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
-
-        gpTipo.add(chkSom);
-        chkSom.setMnemonic('d');
-        chkSom.setText("Aparelho de Som");
-        jPanel2.add(chkSom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-
-        gpTipo.add(chkVG);
-        chkVG.setMnemonic('f');
-        chkVG.setText("Video Game");
-        jPanel2.add(chkVG, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        gpTipo.add(chkDVD);
-        chkDVD.setMnemonic('e');
-        chkDVD.setText("DVD");
-        jPanel2.add(chkDVD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 20));
-
-        gpTipo.add(chkControle);
-        chkControle.setMnemonic('c');
-        chkControle.setText("Controle");
-        jPanel2.add(chkControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        gpTipo.add(chkComputador);
-        chkComputador.setMnemonic('g');
-        chkComputador.setText("Computador");
-        jPanel2.add(chkComputador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 20));
-
-        gpTipo.add(jCheckBox8);
-        jCheckBox8.setMnemonic('h');
-        jCheckBox8.setText("Outro:");
-        jPanel2.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 20));
-        jPanel2.add(txtNomeTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 20));
-
-        btnAddMarca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
-        btnAddMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMarcaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnAddMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 30, 20));
-
-        jPanel2.add(comboMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 120, 20));
-
-        jLabel15.setText("Marca:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 240, 10));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 240, 250));
+        jPanel1.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 80, -1));
 
         txtReparos.setColumns(20);
         txtReparos.setLineWrap(true);
@@ -134,7 +65,7 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
         txtReparos.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalhes e Reparos"));
         jScrollPane2.setViewportView(txtReparos);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 190, 110));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 190, 120));
 
         txtDescricao.setColumns(20);
         txtDescricao.setLineWrap(true);
@@ -142,7 +73,45 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
         txtDescricao.setBorder(javax.swing.BorderFactory.createTitledBorder("Especificações do eletrônico"));
         jScrollPane3.setViewportView(txtDescricao);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 190, 120));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 120));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Eletronico"));
+
+        jLabel13.setText("Tipo:");
+
+        cadTipoEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
+        cadTipoEletronico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadTipoEletronicoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel13)
+                .addGap(22, 22, 22)
+                .addComponent(comboTipo, 0, 267, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(cadTipoEletronico, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cadTipoEletronico))
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 400, 60));
 
         btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -180,8 +149,8 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,63 +187,40 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        gerenciadorI.carregarComboMarcas(comboMarca);
+        gerenciadorI. carregarComboTipoEletronicos(comboTipo);
     }//GEN-LAST:event_formComponentShown
 
-    private void btnAddMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMarcaActionPerformed
-        gerenciadorI.janelaCadMarca();
-    }//GEN-LAST:event_btnAddMarcaActionPerformed
-
     private void btnCadEletronicoRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadEletronicoRefActionPerformed
+        TipoEletronico tipo = (TipoEletronico) comboTipo.getSelectedItem();
         String descricao = txtDescricao.getText();
         String reparos = txtReparos.getText();
-        int valor = Integer.parseInt(txtValor.getText());
-        Marca marca = (Marca) comboMarca.getSelectedItem();
-        String nomeTipo = "";
+        int valor = Integer.parseInt(txtValor.getText());    
         
-        char tipo = (char) gpTipo.getSelection().getMnemonic();
-        switch (tipo) {
-            case 'A' : nomeTipo = chkTelevisao.getText().toString(); break;
-            case 'B' : nomeTipo = chkMonitor.getText().toString(); break;
-            case 'C' : nomeTipo = chkControle.getText().toString(); break;
-            case 'D' : nomeTipo = chkSom.getText().toString(); break;
-            case 'E' : nomeTipo = chkDVD.getText().toString(); break;
-            case 'F' : nomeTipo = chkVG.getText().toString(); break;
-            case 'G' : nomeTipo = chkComputador.getText().toString(); break;
-            case 'H' : nomeTipo = txtNomeTipo.getText(); break;
-        }
-        
-        //gerenciadorI.getGerDominio().inserirTipoEletronico(nomeTipo, marca);
-        //gerenciadorI.getGerDominio().inserirEletronicoReformado(descricao, reparos, valor, nomeTipo, marca);
+        int id = gerenciadorI.getGerDominio().inserirEletronicoReformado(descricao, reparos, valor, tipo);
+        JOptionPane.showMessageDialog(this, "Eletronico Reformado " + id + " inserido com sucesso.", "Inserir Eletronico Reformado", JOptionPane.INFORMATION_MESSAGE  );
     }//GEN-LAST:event_btnCadEletronicoRefActionPerformed
+
+    private void cadTipoEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadTipoEletronicoActionPerformed
+        gerenciadorI.janelaCadTipo();
+    }//GEN-LAST:event_cadTipoEletronicoActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddMarca;
     private javax.swing.JButton btnCadEletronicoRef;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JCheckBox chkComputador;
-    private javax.swing.JCheckBox chkControle;
-    private javax.swing.JCheckBox chkDVD;
-    private javax.swing.JCheckBox chkMonitor;
-    private javax.swing.JCheckBox chkSom;
-    private javax.swing.JCheckBox chkTelevisao;
-    private javax.swing.JCheckBox chkVG;
-    private javax.swing.JComboBox<String> comboMarca;
+    private javax.swing.JButton cadTipoEletronico;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.ButtonGroup gpTipo;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea txtDescricao;
-    private javax.swing.JTextField txtNomeTipo;
     private javax.swing.JTextArea txtReparos;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables

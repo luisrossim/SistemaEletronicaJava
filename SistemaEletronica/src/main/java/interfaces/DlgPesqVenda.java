@@ -30,7 +30,7 @@ public class DlgPesqVenda extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Procurar Produto Reformado");
+        setTitle("Procurar Venda");
         setModal(true);
         setResizable(false);
 
@@ -38,15 +38,20 @@ public class DlgPesqVenda extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Nome", "Rua", "Bairro", "Cidade", "Telefone"
+                "Cliente", "Eletronico", "Data Venda", "Telefone", "Valor"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N

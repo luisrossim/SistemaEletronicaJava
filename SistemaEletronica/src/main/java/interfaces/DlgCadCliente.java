@@ -5,7 +5,6 @@ import gerenciadorTarefas.GerenciadorInterface;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 public class DlgCadCliente extends javax.swing.JDialog {
@@ -228,7 +227,6 @@ public class DlgCadCliente extends javax.swing.JDialog {
         gerenciadorI.janelaCadCidade();
     }//GEN-LAST:event_btnAddCidadeActionPerformed
 
-    //TESTE PARA PRATICAR INSERIR NO BANCO E RECEBER PRIMARY KEY (FUNCAO CARREGAR SO DEVE SER CHAMADA UMA VEZ DEVIDO A CRIACAO DOS OBJETOS)
     private void btnAttComboCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttComboCidadesActionPerformed
         gerenciadorI.carregarComboCidades(comboCidade);
     }//GEN-LAST:event_btnAttComboCidadesActionPerformed

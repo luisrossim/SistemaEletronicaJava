@@ -1,6 +1,14 @@
 package interfaces;
 
+import dominio.EletronicoReformado;
 import gerenciadorTarefas.GerenciadorInterface;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class DlgPesqEletronico extends javax.swing.JDialog {
 
@@ -23,11 +31,11 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        cmbTipo = new javax.swing.JComboBox<>();
+        txtPesq = new javax.swing.JTextField();
+        pesqEletronico = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblEletronicos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Procurar Produto");
@@ -50,22 +58,32 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
 
         jLabel2.setText("Filtrar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eletronico", "Marca", "Data", " " }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eletronico Reformado", "Eletronico Cliente", "Tipo", "Marca", " " }));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        pesqEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        pesqEletronico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesqEletronicoActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEletronicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Eletronico", "Reparo", "Data", "Valor"
+                "ID", "Eletronico", "Detalhes", "Reparos", "Valor"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblEletronicos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,11 +99,11 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(pesqEletronico, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel2)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)))
@@ -104,9 +122,9 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton5))
+                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pesqEletronico))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -124,19 +142,36 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void pesqEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesqEletronicoActionPerformed
+        try {
+            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronicos(txtPesq.getText(), cmbTipo.getSelectedIndex() );
+            
+            ( (DefaultTableModel) tblEletronicos.getModel() ).setNumRows(0);
+            
+            for (EletronicoReformado eletronicoRef : lista ) {     
+                ( (DefaultTableModel) tblEletronicos.getModel() ).addRow( eletronicoRef.toArray() );
+            }
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERRO ao PESQUISAR Eletronicos", JOptionPane.ERROR_MESSAGE  );
+        } catch (ParseException ex) {
+            Logger.getLogger(DlgPesqEletronico.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_pesqEletronicoActionPerformed
+
   
  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton pesqEletronico;
+    private javax.swing.JTable tblEletronicos;
+    private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,16 @@
 package interfaces;
 
+
+import dominio.EletronicoReformado;
+import dominio.Servico;
 import gerenciadorTarefas.GerenciadorInterface;
-import javax.swing.JDialog;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmPrincipal extends javax.swing.JFrame {
 
@@ -20,9 +29,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblServicosEmAndamento = new javax.swing.JTable();
         btnNovoServico = new javax.swing.JButton();
         btnProcurarServico2 = new javax.swing.JButton();
+        btnProcurarEmAndamento = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -32,16 +42,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        btnProcurarEletronico2 = new javax.swing.JButton();
+        tblEletronicos = new javax.swing.JTable();
+        btnProcurarEletronicosRef = new javax.swing.JButton();
         btnCadastrarRef = new javax.swing.JButton();
+        btnProcurarEletronico2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         btnCadCliente = new javax.swing.JMenuItem();
         btnCadServico = new javax.swing.JMenuItem();
         btnCadEletronico = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         btnProcurarCliente = new javax.swing.JMenuItem();
         btnProcurarServico = new javax.swing.JMenuItem();
@@ -58,20 +68,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Serviços em andamento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblServicosEmAndamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Cliente", "Eletronico", "Situação", "Data"
+                "Cliente", "Tipo Eletronico", "Data Inicio", "Telefone"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 620, 500));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblServicosEmAndamento);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 540, 500));
 
         btnNovoServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         btnNovoServico.setText("Novo");
@@ -88,7 +103,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnProcurarServico2ActionPerformed(evt);
             }
         });
-        jPanel3.add(btnProcurarServico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 40, 30));
+        jPanel3.add(btnProcurarServico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 40, 30));
+
+        btnProcurarEmAndamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
+        btnProcurarEmAndamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarEmAndamentoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 40, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,7 +129,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 390, 240));
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 210));
 
         btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/sell.png"))); // NOI18N
         btnVender.setText("Vender");
@@ -123,7 +146,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnProcurarVendaActionPerformed(evt);
             }
         });
-        jPanel4.add(btnProcurarVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 40, 30));
+        jPanel4.add(btnProcurarVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 40, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel1.setText("Área de aparelhos eletronicos reformados");
@@ -134,28 +157,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aparelhos cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblEletronicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "ID", "Eletronico", "Marca", "Valor"
+                "Tipo Eletronico", "Detalhes", "Reparos", "Valor"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 390, 160));
-
-        btnProcurarEletronico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarEletronico2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarEletronico2ActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel1.add(btnProcurarEletronico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 40, 30));
+        jScrollPane3.setViewportView(tblEletronicos);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 200));
+
+        btnProcurarEletronicosRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
+        btnProcurarEletronicosRef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarEletronicosRefActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProcurarEletronicosRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 40, 30));
 
         btnCadastrarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
         btnCadastrarRef.setText("Cadastrar");
@@ -165,6 +193,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCadastrarRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, 30));
+
+        btnProcurarEletronico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarEletronico2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarEletronico2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProcurarEletronico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 40, 30));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         jMenu1.setDisabledSelectedIcon(null);
@@ -199,7 +235,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(btnCadEletronico);
-        jMenu2.add(jSeparator1);
 
         jMenuBar1.add(jMenu2);
 
@@ -266,13 +301,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1))
-                .addGap(24, 24, 24))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,11 +318,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -333,9 +369,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaCadServico();
     }//GEN-LAST:event_btnNovoServicoActionPerformed
 
-    private void btnProcurarEletronico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronico2ActionPerformed
-        gerenciadorI.janelaProcurarEletronico();
-    }//GEN-LAST:event_btnProcurarEletronico2ActionPerformed
+    private void btnProcurarEletronicosRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronicosRefActionPerformed
+        try {
+            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronicos("", 0);
+            
+            ( (DefaultTableModel) tblEletronicos.getModel() ).setNumRows(0);
+            
+            for (EletronicoReformado eletronicoRef : lista ) {     
+                ( (DefaultTableModel) tblEletronicos.getModel() ).addRow( eletronicoRef.toArray2() );
+            }
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERRO ao LISTAR Eletronicos", JOptionPane.ERROR_MESSAGE  );
+        } catch (ParseException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnProcurarEletronicosRefActionPerformed
 
     private void btnProcurarServico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarServico2ActionPerformed
         gerenciadorI.janelaProcurarServico();
@@ -348,6 +397,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnCadastrarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRefActionPerformed
         gerenciadorI.janelaCadEletronicoRef();
     }//GEN-LAST:event_btnCadastrarRefActionPerformed
+
+    private void btnProcurarEmAndamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEmAndamentoActionPerformed
+        try {
+            List<Servico> lista = gerenciadorI.getGerDominio().pesquisarServicosEmAndamento();
+            
+            ( (DefaultTableModel) tblServicosEmAndamento.getModel() ).setNumRows(0);
+            
+            for (Servico servico : lista ) {     
+                ( (DefaultTableModel) tblServicosEmAndamento.getModel() ).addRow( servico.toArray2() );
+            }
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERRO ao LISTAR Servicos", JOptionPane.ERROR_MESSAGE  );
+        } catch (ParseException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnProcurarEmAndamentoActionPerformed
+
+    private void btnProcurarEletronico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronico2ActionPerformed
+        gerenciadorI.janelaProcurarEletronico();
+    }//GEN-LAST:event_btnProcurarEletronico2ActionPerformed
 
     
     
@@ -363,6 +433,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnProcurarCliente;
     private javax.swing.JMenuItem btnProcurarEletronico;
     private javax.swing.JButton btnProcurarEletronico2;
+    private javax.swing.JButton btnProcurarEletronicosRef;
+    private javax.swing.JButton btnProcurarEmAndamento;
     private javax.swing.JMenuItem btnProcurarServico;
     private javax.swing.JButton btnProcurarServico2;
     private javax.swing.JButton btnProcurarVenda;
@@ -382,10 +454,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JMenuItem menuSair;
+    private javax.swing.JTable tblEletronicos;
+    private javax.swing.JTable tblServicosEmAndamento;
     // End of variables declaration//GEN-END:variables
 }
