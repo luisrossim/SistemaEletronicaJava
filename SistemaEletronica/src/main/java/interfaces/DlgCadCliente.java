@@ -1,19 +1,24 @@
 package interfaces;
 
 import dominio.Cidade;
+import dominio.Cliente;
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class DlgCadCliente extends javax.swing.JDialog {
 
     private GerenciadorInterface gerenciadorI;
-        
+    private Cliente cliSelecionado;    
+    
     public DlgCadCliente(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciadorI) {
         initComponents();
         this.gerenciadorI = gerenciadorI;
+        this.cliSelecionado = null;
     }
 
     
@@ -110,7 +115,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, -1));
+        jPanel1.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 110, -1));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 170, -1));
 
         jLabel13.setText("Cidade:");
@@ -121,7 +126,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 90, -1));
+        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 110, -1));
 
         jLabel6.setText("CPF:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
@@ -220,7 +225,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        gerenciadorI.carregarComboCidades(comboCidade);
+        gerenciadorI.carregarComboBox(comboCidade, Cidade.class);
     }//GEN-LAST:event_formComponentShown
 
     private void btnAddCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCidadeActionPerformed
@@ -228,7 +233,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAddCidadeActionPerformed
 
     private void btnAttComboCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttComboCidadesActionPerformed
-        gerenciadorI.carregarComboCidades(comboCidade);
+        gerenciadorI.carregarComboBox(comboCidade, Cidade.class);
     }//GEN-LAST:event_btnAttComboCidadesActionPerformed
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
@@ -239,18 +244,37 @@ public class DlgCadCliente extends javax.swing.JDialog {
         char sexo = (char) btngrpSexo.getSelection().getMnemonic();
         String email = txtEmail.getText();
         
-        try {
-            int id = gerenciadorI.getGerDominio().inserirCliente(nome, telefone, cpf, cidade, sexo, email);
-            JOptionPane.showMessageDialog(this, "Cliente " + id + " inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE  );
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DlgCadCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DlgCadCliente.class.getName()).log(Level.SEVERE, null, ex);
+        if(validarCampos()) {
+            try {
+                if(cliSelecionado == null) {
+                    // INSERIR
+                    int id = gerenciadorI.getGerDominio().inserirCliente(nome, telefone, cpf, cidade, sexo, email);
+                    JOptionPane.showMessageDialog(this, "Cliente " + id + "inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE  );
+                }else{
+                    // ALTERAR                
+                }
+                
+            } catch(HibernateException ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERRO Cliente", JOptionPane.ERROR_MESSAGE  );
+            }
+            catch(Exception ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERRO Cliente", JOptionPane.ERROR_MESSAGE  );
+            }
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
-    
+    private boolean validarCampos() {
+        String msgErro = "";
+        
+        //VALIDAR CAMPOS
+        
+        if(msgErro.isEmpty()) {
+            return true;
+        }else{            
+            JOptionPane.showMessageDialog(this, msgErro, "ERRO Cliente", JOptionPane.ERROR_MESSAGE  );
+            return false;
+        }
+    }
 
     
     

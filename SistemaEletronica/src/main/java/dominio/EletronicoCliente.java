@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.List;
 import javax.persistence.*;
 

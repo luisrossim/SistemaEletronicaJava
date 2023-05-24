@@ -1,10 +1,10 @@
 package interfaces;
 
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class DlgCadCidade extends javax.swing.JDialog {
 
@@ -138,7 +138,7 @@ public class DlgCadCidade extends javax.swing.JDialog {
             int id = gerenciadorI.getGerDominio().inserirCidade(nome);
             JOptionPane.showMessageDialog(this, "Cidade " + id + " cadastrada com sucesso.", "Cadastrar Cidade", JOptionPane.INFORMATION_MESSAGE  );
             this.dispose();
-        } catch (SQLException ex) {
+        } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERRO Cidade", JOptionPane.ERROR_MESSAGE  );
         }
     }//GEN-LAST:event_btnCadastrarCidadeActionPerformed

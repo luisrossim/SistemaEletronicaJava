@@ -4,13 +4,13 @@ package interfaces;
 import dominio.EletronicoReformado;
 import dominio.Servico;
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
 
 public class FrmPrincipal extends javax.swing.JFrame {
 
@@ -371,7 +371,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnProcurarEletronicosRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronicosRefActionPerformed
         try {
-            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronicos("", 0);
+            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronico("", 0);
             
             ( (DefaultTableModel) tblEletronicos.getModel() ).setNumRows(0);
             
@@ -379,7 +379,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ( (DefaultTableModel) tblEletronicos.getModel() ).addRow( eletronicoRef.toArray2() );
             }
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERRO ao LISTAR Eletronicos", JOptionPane.ERROR_MESSAGE  );
         } catch (ParseException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -408,7 +408,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ( (DefaultTableModel) tblServicosEmAndamento.getModel() ).addRow( servico.toArray2() );
             }
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERRO ao LISTAR Servicos", JOptionPane.ERROR_MESSAGE  );
         } catch (ParseException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);

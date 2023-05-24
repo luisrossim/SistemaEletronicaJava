@@ -2,7 +2,6 @@ package interfaces;
 
 import dominio.Cliente;
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -54,7 +53,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         setModal(true);
         setResizable(false);
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "ID" }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Cidade", "CPF" }));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Procurar Cliente");
@@ -179,7 +178,7 @@ public class DlgPesqCliente extends javax.swing.JDialog {
                 ( (DefaultTableModel) tblClientes.getModel() ).addRow( cliente.toArray() );
             }
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERRO ao PESQUISAR Cliente", JOptionPane.ERROR_MESSAGE  );
         } catch (ParseException ex) {
             Logger.getLogger(DlgPesqCliente.class.getName()).log(Level.SEVERE, null, ex);

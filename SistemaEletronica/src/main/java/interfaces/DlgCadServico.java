@@ -297,7 +297,7 @@ public class DlgCadServico extends javax.swing.JDialog {
     }//GEN-LAST:event_btnProcurarClienteActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        gerenciadorI.carregarComboTipoEletronicos(comboTipo);
+        gerenciadorI.carregarComboBox(comboTipo, TipoEletronico.class);
     }//GEN-LAST:event_formComponentShown
 
     private void btnCadTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadTipoActionPerformed

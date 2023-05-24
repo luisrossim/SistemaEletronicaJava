@@ -2,10 +2,10 @@ package interfaces;
 
 import dominio.Marca;
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class DlgCadTipoEletronico extends javax.swing.JDialog {
 
@@ -163,13 +163,19 @@ public class DlgCadTipoEletronico extends javax.swing.JDialog {
         String nomeTipo = txtNomeTipo.getText();
         Marca marca = (Marca) comboMarca.getSelectedItem();
         
-        int id = gerenciadorI.getGerDominio().inserirTipoEletronico(nomeTipo, marca);
-        JOptionPane.showMessageDialog(this, "Tipo " + id + " cadastrada com sucesso.", "Cadastrar Tipo Eletronico", JOptionPane.INFORMATION_MESSAGE  );
-        this.dispose();
+        try{
+            int id = gerenciadorI.getGerDominio().inserirTipoEletronico(nomeTipo, marca);
+            JOptionPane.showMessageDialog(this, "Tipo " + id + " cadastrada com sucesso.", "Cadastrar Tipo Eletronico", JOptionPane.INFORMATION_MESSAGE  );
+            this.dispose();
+        } catch (HibernateException ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );
+        } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );
+        }
     }//GEN-LAST:event_btnCadastrarTipoActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        gerenciadorI.carregarComboMarcas(comboMarca);
+        gerenciadorI.carregarComboBox(comboMarca, Marca.class);
     }//GEN-LAST:event_formComponentShown
 
     private void cadMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadMarcaActionPerformed

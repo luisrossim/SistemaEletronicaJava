@@ -2,13 +2,13 @@ package interfaces;
 
 import dominio.EletronicoReformado;
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
 
 public class DlgPesqEletronico extends javax.swing.JDialog {
 
@@ -58,7 +58,7 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
 
         jLabel2.setText("Filtrar por:");
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eletronico Reformado", "Eletronico Cliente", "Tipo", "Marca", " " }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eletronico Reformado", "Tipo", "Marca", "Valor", " " }));
 
         pesqEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
         pesqEletronico.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
 
     private void pesqEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesqEletronicoActionPerformed
         try {
-            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronicos(txtPesq.getText(), cmbTipo.getSelectedIndex() );
+            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronico(txtPesq.getText(), cmbTipo.getSelectedIndex() );
             
             ( (DefaultTableModel) tblEletronicos.getModel() ).setNumRows(0);
             
@@ -152,7 +152,7 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
                 ( (DefaultTableModel) tblEletronicos.getModel() ).addRow( eletronicoRef.toArray() );
             }
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERRO ao PESQUISAR Eletronicos", JOptionPane.ERROR_MESSAGE  );
         } catch (ParseException ex) {
             Logger.getLogger(DlgPesqEletronico.class.getName()).log(Level.SEVERE, null, ex);

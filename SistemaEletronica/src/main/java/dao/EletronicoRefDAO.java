@@ -8,50 +8,26 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 
-public class EletronicoRefDAO {
-    public void inserir(EletronicoReformado eletronicoRef) throws HibernateException {        
-        Session sessao = null;
-        
-        try {
-            sessao = ConnectionHibernate.getSessionFactory().openSession();
-            sessao.beginTransaction();
+public class EletronicoRefDAO extends GenericDAO {
+    
+    //LISTA TODOS (FALTA IMPLEMENTAR O TIPO FILTRADO)
+    private List<EletronicoReformado> pesquisar(String pesq, int tipo) throws HibernateException {
+        return listar(EletronicoReformado.class);
+    }
             
-            sessao.save(eletronicoRef);
-
-            sessao.getTransaction().commit();              
-            sessao.close();
-        } catch( HibernateException erro) {
-            if ( sessao != null ){
-                sessao.getTransaction().rollback();
-                sessao.close();
-            }
-            throw new HibernateException(erro);
-        }
+    public List<EletronicoReformado> pesquisarEletronicoReformado(String pesq) throws HibernateException {
+        return pesquisar(pesq,0);
     }
     
-    
-    public List<EletronicoReformado> listar() throws HibernateException {
-        Session sessao = null;
-        List lista = null;
-        
-        try {
-            sessao = ConnectionHibernate.getSessionFactory().openSession();
-            sessao.beginTransaction();
-            
-            CriteriaQuery consulta = sessao.getCriteriaBuilder().createQuery(EletronicoReformado.class);
-            consulta.from(EletronicoReformado.class);
-            lista = sessao.createQuery(consulta).getResultList();            
-
-            sessao.getTransaction().commit();              
-            sessao.close();
-        } catch( HibernateException erro) {
-            if ( sessao != null ){
-                sessao.getTransaction().rollback();
-                sessao.close();
-            }
-        }
-        return lista;
+    public List<EletronicoReformado> pesquisarEletronicoTipo(String pesq) throws HibernateException {
+        return pesquisar(pesq,1);
     }
-     
-     
+    
+    public List<EletronicoReformado> pesquisarEletronicoMarca(String pesq) throws HibernateException {
+        return pesquisar(pesq,2);
+    }
+    
+    public List<EletronicoReformado> pesquisarEletronicoValor(String pesq) throws HibernateException {
+        return pesquisar(pesq,3);
+    }
 }

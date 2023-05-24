@@ -20,7 +20,6 @@ import interfaces.DlgVendaEletronicoRef;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -28,6 +27,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.hibernate.HibernateException;
 
 public class GerenciadorInterface {
     
@@ -52,7 +52,7 @@ public class GerenciadorInterface {
     public GerenciadorInterface() {
         try {
             gerDominio = new GerenciadorDominio();
-        } catch (ClassNotFoundException | SQLException  ex) {
+        } catch (ClassNotFoundException | HibernateException  ex) {
             JOptionPane.showMessageDialog(janPrincipal, "Erro de conexão com o banco. " + ex.getMessage() );
                 System.exit(-1);
         } 
@@ -63,8 +63,8 @@ public class GerenciadorInterface {
     }
 
     
-    
-    
+    //==================================================================================
+    //ABRIR JANELAS
     private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {
         if (dlg == null){     
             try {
@@ -77,10 +77,6 @@ public class GerenciadorInterface {
         dlg.setVisible(true); 
         return dlg;
     }
-    
-    
-    
-    
     
     public void janelaLogin() {
         janLogin = (DlgLogin) abrirJanela(null, janLogin, DlgLogin.class);
@@ -140,42 +136,20 @@ public class GerenciadorInterface {
     
     
     
-    public void carregarComboCidades(JComboBox combo) {
+    //==================================================================================
+    //CARREGAR COMBO BOX GENERICO
+    public void carregarComboBox(JComboBox combo, Class classe) throws HibernateException {
         try {
-            List<Cidade> lista = gerDominio.listarCidades();
+            List<Class> lista = gerDominio.listar(classe);
             combo.setModel( new DefaultComboBoxModel( lista.toArray() )  );
                                    
-        } catch (ClassNotFoundException | SQLException  ex) {
-            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar cidades. " + ex.getMessage() );          
-        } 
-    }
-    
-    public void carregarComboTipoEletronicos(JComboBox combo) {
-        try {
-            List<TipoEletronico> lista = gerDominio.listarTipoEletronicos();
-            combo.setModel( new DefaultComboBoxModel( lista.toArray() )  );
-                                   
-        } catch (ClassNotFoundException | SQLException  ex) {
-            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar tipos de eletronicos. " + ex.getMessage() );          
+        } catch (HibernateException  ex) {
+            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar " + classe.getName() + " " + ex.getMessage() );          
         }
     }
     
-    public void carregarComboMarcas(JComboBox combo) {
-        try {
-            List<Marca> lista = gerDominio.listarMarcas();
-            combo.setModel( new DefaultComboBoxModel( lista.toArray() )  );
-                                   
-        } catch (ClassNotFoundException | SQLException  ex) {
-            JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar marcas. " + ex.getMessage() );          
-        } 
-    }
     
-    
-    
-    
-    
-    
-    
+   
     
     
     

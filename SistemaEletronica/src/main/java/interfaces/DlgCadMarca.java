@@ -2,10 +2,10 @@ package interfaces;
 
 import dominio.Marca;
 import gerenciadorTarefas.GerenciadorInterface;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class DlgCadMarca extends javax.swing.JDialog {
 
@@ -135,7 +135,7 @@ public class DlgCadMarca extends javax.swing.JDialog {
             int id = gerenciadorI.getGerDominio().inserirMarca(nome);
             JOptionPane.showMessageDialog(this, "Marca " + id + " cadastrada com sucesso.", "Cadastrar Marca", JOptionPane.INFORMATION_MESSAGE  );
             this.dispose();
-        } catch (SQLException ex) {
+        } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERRO Marca", JOptionPane.ERROR_MESSAGE  );
         }
     }//GEN-LAST:event_btnCadastrarMarcaActionPerformed
