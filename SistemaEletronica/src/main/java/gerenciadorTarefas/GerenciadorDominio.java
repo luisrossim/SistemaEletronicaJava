@@ -1,14 +1,9 @@
 package gerenciadorTarefas;
 
-import dao.CidadeDAO;
 import dao.ClienteDAO;
 import dao.ConnectionHibernate;
-import dao.EletronicoCliDAO;
 import dao.EletronicoRefDAO;
 import dao.GenericDAO;
-import dao.MarcaDAO;
-import dao.ServicoDAO;
-import dao.TipoEletronicoDAO;
 import dominio.Cidade;
 import dominio.Cliente;
 import dominio.EletronicoCliente;
@@ -23,26 +18,17 @@ import org.hibernate.HibernateException;
 public class GerenciadorDominio {
     
     GenericDAO genDao = null;
-    CidadeDAO cidadeDao = null;
-    TipoEletronicoDAO tipoEletronicoDao = null;
-    MarcaDAO marcaDao = null;
     ClienteDAO clienteDao = null;
     EletronicoRefDAO eletronicoRefDao = null;
-    EletronicoCliDAO eletronicoCliDao = null;
-    ServicoDAO servicoDao = null;
     
     
     public GerenciadorDominio() throws ClassNotFoundException {
         ConnectionHibernate.getSessionFactory();
         genDao = new GenericDAO();
-        cidadeDao = new CidadeDAO();
-        tipoEletronicoDao = new TipoEletronicoDAO();
-        marcaDao = new MarcaDAO();
         clienteDao = new ClienteDAO();
         eletronicoRefDao = new EletronicoRefDAO();
-        eletronicoCliDao = new EletronicoCliDAO();
-        servicoDao = new ServicoDAO();
     }
+    
     
     
     //==================================================================================
@@ -53,29 +39,28 @@ public class GerenciadorDominio {
         return eletronicoRef.getIdEletronicoRef();
     }
     
-    
     public int inserirCidade(String nome) throws HibernateException {
         Cidade cidade = new Cidade(nome);
-        cidadeDao.inserir(cidade);
+        genDao.inserir(cidade);
         return cidade.getIdCidade();
     }
     
     public int inserirServico(Cliente cliente, String descricaoElet, String descricaoSer, TipoEletronico tipo, int valor, Date dataInicio, Date dataFim, String local, String problemas) throws HibernateException {
         EletronicoCliente eletronicoCli = new EletronicoCliente(descricaoElet, problemas, tipo);
         Servico servico = new Servico(local, descricaoSer, "", false, valor, dataInicio, dataFim, cliente, eletronicoCli);
-        servicoDao.inserir(servico);
+        genDao.inserir(servico);
         return servico.getIdServico();
     }
     
     public int inserirTipoEletronico(String nome, Marca marca) throws HibernateException {
         TipoEletronico tipo = new TipoEletronico(nome, marca);
-        tipoEletronicoDao.inserir(tipo);
+        genDao.inserir(tipo);
         return tipo.getIdTipoEletronico();
     }
     
     public int inserirMarca(String nome) throws HibernateException {
         Marca marca = new Marca(nome);
-        marcaDao.inserir(marca);
+        genDao.inserir(marca);
         return marca.getIdMarca();
     }
     
@@ -116,16 +101,27 @@ public class GerenciadorDominio {
     
     public List<Servico> pesquisarServicosEmAndamento () throws ClassNotFoundException, HibernateException {
         List<Servico> lista = null;
-        lista = servicoDao.listar(Servico.class);
+        lista = genDao.listar(Servico.class);
         return lista;
     }
      
-     
+    
     
     //==================================================================================
     //EXCLUIR
     public void excluirCliente(Cliente cliente){
         clienteDao.excluir(cliente);
     }
+    
+    
+    
+    //==================================================================================
+    //ALTERAR
+    public void alterarCliente(){
+        //PARAMETRO (CLIENTE + DADOS)
+        //SETAR NOVOS DADOS NO CLIENTE
+        //CHAMAR FUNCAO ALTERAR (UPDATE)
+    }
+    
     
 }

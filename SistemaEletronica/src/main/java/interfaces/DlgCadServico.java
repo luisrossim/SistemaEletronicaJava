@@ -254,11 +254,11 @@ public class DlgCadServico extends javax.swing.JDialog {
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(54, 54, 54)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCadServico, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,6 +285,7 @@ public class DlgCadServico extends javax.swing.JDialog {
     
     
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        //limparCampos();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -302,6 +303,7 @@ public class DlgCadServico extends javax.swing.JDialog {
 
     private void btnCadTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadTipoActionPerformed
         gerenciadorI.janelaCadTipo();
+        gerenciadorI.carregarComboBox(comboTipo, TipoEletronico.class);
     }//GEN-LAST:event_btnCadTipoActionPerformed
 
     private void btnCadServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadServicoActionPerformed
@@ -318,7 +320,7 @@ public class DlgCadServico extends javax.swing.JDialog {
             if(localChar == 'O') local = "Oficina";
             else local = "Casa";
             
-            System.out.println(local);
+            //PASSAR PARA FUNCOES UTEIS
             List<String> listaproblemas = listProblemas.getSelectedValuesList();
             String problemas = "";
             for (String str : listaproblemas) {
