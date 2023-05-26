@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -32,8 +33,9 @@ public class VendaReformado implements Serializable {
 
     
     
-    public VendaReformado(int idVenda, Date dataVenda, String descricao, int valorFinal, Cliente cliente, EletronicoReformado eletronicoReformado) {
-        this.idVenda = idVenda;
+    public VendaReformado(){}
+    
+    public VendaReformado(Date dataVenda, String descricao, int valorFinal, Cliente cliente, EletronicoReformado eletronicoReformado) {
         this.dataVenda = dataVenda;
         this.descricao = descricao;
         this.valorFinal = valorFinal;
@@ -92,4 +94,11 @@ public class VendaReformado implements Serializable {
         this.eletronicoReformado = eletronicoReformado;
     }
    
+    
+    
+    
+    public Object[] toArray() throws ParseException {
+        return new Object[] {cliente.getNome(), eletronicoReformado.toString(), dataVenda, cliente.getTelefone(), valorFinal};
+    }
+    
 }

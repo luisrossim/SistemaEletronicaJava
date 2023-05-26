@@ -70,7 +70,7 @@ public class DlgPesqVenda extends javax.swing.JDialog {
 
         jLabel2.setText("Filtrar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Eletronico", "Marca", "Data" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Eletronico", "Marca", "Data" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

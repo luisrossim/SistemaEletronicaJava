@@ -262,7 +262,8 @@ public class DlgCadCliente extends javax.swing.JDialog {
                 if(cliSelecionado == null) {
                     // INSERIR
                     int id = gerenciadorI.getGerDominio().inserirCliente(nome, telefone, cpf, cidade, sexo, email);
-                    JOptionPane.showMessageDialog(this, "Cliente " + id + "inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE  );
+                    JOptionPane.showMessageDialog(this, "Cliente " + id + "inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE );
+                    this.dispose();
                 }else{
                     // ALTERAR
                 }

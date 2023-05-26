@@ -333,6 +333,7 @@ public class DlgCadServico extends javax.swing.JDialog {
                 Date dataFim = FuncoesUteis.strToDate(dataFimStr);
                 int idServico = gerenciadorI.getGerDominio().inserirServico(cliSelecionado, descricaoEle, descricaoSer, tipo, valor, dataInicio, dataFim, local, problemas);
                 JOptionPane.showMessageDialog(this, "Servico " + idServico + " inserido com sucesso.");
+                this.dispose();
                 
             } catch (ParseException | HibernateException ex) {
                 JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );

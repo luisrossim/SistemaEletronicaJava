@@ -22,6 +22,8 @@ public class EletronicoReformado implements Serializable {
     @Column(length = 20)
     private int valor;
     
+    //CRIAR OUTRA COLUNA PARA DIZER SE ELE FOI VENDIDO O NAO
+    
     @ManyToOne
     @JoinColumn(name = "idTipoEletronico")
     private TipoEletronico tipo;
@@ -85,8 +87,16 @@ public class EletronicoReformado implements Serializable {
     }
 
     
+    
+    
+    
+    @Override
+    public String toString() {
+        return tipo.toString();
+    }
+    
     public Object[] toArray() throws ParseException {
-        return new Object[] { idEletronicoRef, tipo.toString(), descricao, reparos, valor};
+        return new Object[] { idEletronicoRef, this, descricao, reparos, valor};
     }
     
     public Object[] toArray2() throws ParseException {

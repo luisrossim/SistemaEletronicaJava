@@ -11,6 +11,7 @@ import dominio.EletronicoReformado;
 import dominio.Marca;
 import dominio.Servico;
 import dominio.TipoEletronico;
+import dominio.VendaReformado;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -70,6 +71,12 @@ public class GerenciadorDominio {
         return cliente.getIdCliente();
     }
     
+    public int inserirVenda(Date data, String desc, int valor, Cliente cli, EletronicoReformado elet){
+        VendaReformado venda = new VendaReformado(data, desc, valor, cli, elet);
+        genDao.inserir(venda);
+        return venda.getIdVenda();
+    }
+    
     
     
     //==================================================================================
@@ -99,9 +106,15 @@ public class GerenciadorDominio {
         return lista;
     }
     
-    public List<Servico> pesquisarServicosEmAndamento () throws ClassNotFoundException, HibernateException {
+    public List<Servico> pesquisarServicos () throws ClassNotFoundException, HibernateException {
         List<Servico> lista = null;
         lista = genDao.listar(Servico.class);
+        return lista;
+    }
+    
+    public List<VendaReformado> pesquisarVendas () throws ClassNotFoundException, HibernateException {
+        List<VendaReformado> lista = null;
+        lista = genDao.listar(VendaReformado.class);
         return lista;
     }
      

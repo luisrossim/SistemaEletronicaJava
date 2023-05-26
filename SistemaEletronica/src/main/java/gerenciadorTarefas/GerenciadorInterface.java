@@ -3,6 +3,7 @@ package gerenciadorTarefas;
 import com.formdev.flatlaf.FlatDarkLaf;
 import dominio.Cidade;
 import dominio.Cliente;
+import dominio.EletronicoReformado;
 import dominio.Marca;
 import dominio.TipoEletronico;
 import interfaces.DlgCadCidade;
@@ -16,7 +17,7 @@ import interfaces.DlgPesqCliente;
 import interfaces.DlgPesqEletronico;
 import interfaces.DlgPesqServico;
 import interfaces.DlgPesqVenda;
-import interfaces.DlgVendaEletronicoRef;
+import interfaces.DlgCadVenda;
 import interfaces.FrmPrincipal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -39,7 +40,7 @@ public class GerenciadorInterface {
     private DlgCadEletronicoRef janCadEletronicoRef = null;
     private DlgCadMarca janCadMarca = null;
     private DlgCadTipoEletronico janCadTipo = null;
-    private DlgVendaEletronicoRef janVendaEletronicoRef = null;
+    private DlgCadVenda janVendaEletronicoRef = null;
     private DlgPesqCliente janProcurarCliente = null;
     private DlgPesqServico janProcurarServico = null;
     private DlgPesqEletronico janProcurarEletronico = null;
@@ -104,7 +105,7 @@ public class GerenciadorInterface {
     }
     
     public void janelaVendaEletronicoRef(){
-        janVendaEletronicoRef = (DlgVendaEletronicoRef) abrirJanela(janPrincipal, janVendaEletronicoRef, DlgVendaEletronicoRef.class);
+        janVendaEletronicoRef = (DlgCadVenda) abrirJanela(janPrincipal, janVendaEletronicoRef, DlgCadVenda.class);
     }
     
     public Cliente janelaProcurarCliente(){
@@ -120,8 +121,9 @@ public class GerenciadorInterface {
         janProcurarServico = (DlgPesqServico) abrirJanela(janPrincipal, janProcurarServico, DlgPesqServico.class);
     }
     
-    public void janelaProcurarEletronico(){
+    public EletronicoReformado janelaProcurarEletronico(){
         janProcurarEletronico = (DlgPesqEletronico) abrirJanela(janPrincipal, janProcurarEletronico, DlgPesqEletronico.class);
+        return janProcurarEletronico.getEletronico();
     }
     
     public void janelaProcurarVenda(){

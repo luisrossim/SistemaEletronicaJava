@@ -191,13 +191,15 @@ public class DlgCadEletronicoRef extends javax.swing.JDialog {
     }//GEN-LAST:event_formComponentShown
 
     private void btnCadEletronicoRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadEletronicoRefActionPerformed
+        //VALIDAR CAMPOS ANTES
         TipoEletronico tipo = (TipoEletronico) comboTipo.getSelectedItem();
         String descricao = txtDescricao.getText();
         String reparos = txtReparos.getText();
         int valor = Integer.parseInt(txtValor.getText());    
         
         int id = gerenciadorI.getGerDominio().inserirEletronicoReformado(descricao, reparos, valor, tipo);
-        JOptionPane.showMessageDialog(this, "Eletronico Reformado " + id + " inserido com sucesso.", "Inserir Eletronico Reformado", JOptionPane.INFORMATION_MESSAGE  );
+        JOptionPane.showMessageDialog(this, "Eletronico Reformado " + id + " inserido com sucesso.", "Inserir Eletronico Reformado", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
     }//GEN-LAST:event_btnCadEletronicoRefActionPerformed
 
     private void cadTipoEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadTipoEletronicoActionPerformed

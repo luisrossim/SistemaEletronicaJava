@@ -148,6 +148,7 @@ public class Servico implements Serializable {
         return new Object[] { idServico, cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
     }
     
+    //TESTE
     public Object[] toArray2() throws ParseException {
         return new Object[] { cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
     }
