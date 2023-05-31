@@ -1,18 +1,28 @@
 package gerenciadorTarefas;
 
+import dominio.Cidade;
+import dominio.Marca;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import dominio.TipoEletronico;
+import java.util.Comparator;
 
 
 public class FuncoesUteis {
+    //==================================================================================
+    //CONVERTE STRING PARA FORMATO DATE
     public static Date strToDate( String strDt) throws ParseException {
         DateFormat dtForm = new SimpleDateFormat("dd/MM/yyyy");
         dtForm.setLenient(false);
         return dtForm.parse(strDt);
     }
     
+    
+    //==================================================================================
+    //VALIDAR CPF
     public static boolean isCPF(String parCpf) {      
         String cpf;
         cpf = parCpf.replace(".", "");
@@ -72,4 +82,21 @@ public class FuncoesUteis {
     }
     
     
+    //==================================================================================
+    //ORDENAR LISTAS CARREGADAS EM COMBOBOX
+    public static List<Class> ordenarListaCombo(Class classe, List lista) {
+        //ORDENAR COMBO TIPOS DE ELETRONICOS
+        if(classe.getName().equals("dominio.TipoEletronico")){
+            lista.sort(Comparator.comparing(TipoEletronico::getNomeTipoEletronico));
+        }
+        //ORDENAR COMBO MARCAS
+        else if(classe.getName().equals("dominio.Marca")){
+            lista.sort(Comparator.comparing(Marca::getNomeMarca));
+        }
+        //ORDENAR COMBO CIDADES
+        else if(classe.getName().equals("dominio.Cidade")){
+            lista.sort(Comparator.comparing(Cidade::getNomeCidade));
+        }
+        return lista;
+    }
 }

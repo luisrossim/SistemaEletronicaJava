@@ -143,8 +143,9 @@ public class GerenciadorInterface {
     public void carregarComboBox(JComboBox combo, Class classe) throws HibernateException {
         try {
             List<Class> lista = gerDominio.listar(classe);
-            combo.setModel(new DefaultComboBoxModel(lista.toArray()));
-                                   
+            List<Class> listaOrdenada = FuncoesUteis.ordenarListaCombo(classe, lista);
+            combo.setModel(new DefaultComboBoxModel(listaOrdenada.toArray()));
+            
         } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(janPrincipal, "Erro ao carregar " + classe.getName() + " " + ex.getMessage());          
         }
