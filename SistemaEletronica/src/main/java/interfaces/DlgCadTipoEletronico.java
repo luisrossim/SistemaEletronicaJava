@@ -200,8 +200,9 @@ public class DlgCadTipoEletronico extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCadastrarTipoActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        txtNomeTipo.setText("");
         gerenciadorI.carregarComboBox(comboMarca, Marca.class);
-        gerenciadorI.listarNomeTipo(comboNomeTipo, TipoEletronico.class);
+        gerenciadorI.carregarComboBoxByNomeTipoElet(comboNomeTipo, TipoEletronico.class);
     }//GEN-LAST:event_formComponentShown
 
     private void cadMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadMarcaActionPerformed

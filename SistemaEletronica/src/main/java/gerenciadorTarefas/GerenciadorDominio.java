@@ -89,8 +89,8 @@ public class GerenciadorDominio {
         return genDao.listar(classe);        
     }
     
-    public List listarNome(Class classe) throws HibernateException {        
-        return tipoEletronicoDao.listarTipoNome();        
+    public List listarNomeTipoElet(Class classe) throws HibernateException {        
+        return tipoEletronicoDao.listarNomeTipo();        
     }
     
     public List<Cliente> pesquisarCliente (String pesq, int tipo) throws ClassNotFoundException, HibernateException {

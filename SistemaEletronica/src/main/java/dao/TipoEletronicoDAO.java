@@ -12,21 +12,22 @@ import org.hibernate.Session;
 
 
 public class TipoEletronicoDAO {
-    public List<String> listarTipoNome() throws HibernateException {
-        List lista = null;
+    public List<String> listarNomeTipo() throws HibernateException {
+        List<String> lista = null;
         Session sessao = null;
         try {
             sessao = ConnectionHibernate.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            // Construtor da CONSULTA
             CriteriaBuilder builder = sessao.getCriteriaBuilder();
-            CriteriaQuery query = builder.createQuery( TipoEletronico.class );
-            
-            // FROM
-            Root tabela = query.from(TipoEletronico.class);
+            CriteriaQuery<String> query = builder.createQuery( String.class );
+           
+            Root<TipoEletronico> tabela = query.from(TipoEletronico.class);
             
             query.select(tabela.get("nomeTipoEletronico"));
+            query.distinct(true);
+            query.orderBy(builder.asc(tabela.get("nomeTipoEletronico")));
+            
             lista = sessao.createQuery(query).getResultList();            
 
             sessao.getTransaction().commit();

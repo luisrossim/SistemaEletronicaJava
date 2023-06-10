@@ -83,7 +83,7 @@ public class FuncoesUteis {
     
     
     //==================================================================================
-    //ORDENAR LISTAS CARREGADAS EM COMBOBOX
+    //ORDENAR LISTAS CARREGADAS EM COMBOBOX SEM CRITERIA
     public static List<Class> ordenarListaCombo(Class classe, List lista) {
         //ORDENAR COMBO TIPOS DE ELETRONICOS
         if(classe.getName().equals("dominio.TipoEletronico")){
