@@ -4,6 +4,7 @@ import dao.ClienteDAO;
 import dao.ConnectionHibernate;
 import dao.EletronicoRefDAO;
 import dao.GenericDAO;
+import dao.TipoEletronicoDAO;
 import dominio.Cidade;
 import dominio.Cliente;
 import dominio.EletronicoCliente;
@@ -21,6 +22,7 @@ public class GerenciadorDominio {
     GenericDAO genDao = null;
     ClienteDAO clienteDao = null;
     EletronicoRefDAO eletronicoRefDao = null;
+    TipoEletronicoDAO tipoEletronicoDao = null;
     
     
     public GerenciadorDominio() throws ClassNotFoundException {
@@ -28,6 +30,7 @@ public class GerenciadorDominio {
         genDao = new GenericDAO();
         clienteDao = new ClienteDAO();
         eletronicoRefDao = new EletronicoRefDAO();
+        tipoEletronicoDao = new TipoEletronicoDAO();
     }
     
     
@@ -74,6 +77,7 @@ public class GerenciadorDominio {
     public int inserirVenda(Date data, String desc, int valor, Cliente cli, EletronicoReformado elet){
         VendaReformado venda = new VendaReformado(data, desc, valor, cli, elet);
         genDao.inserir(venda);
+        System.out.println(elet.isVendido());
         return venda.getIdVenda();
     }
     
@@ -83,6 +87,10 @@ public class GerenciadorDominio {
     //LISTAR
     public List listar(Class classe) throws HibernateException {        
         return genDao.listar(classe);        
+    }
+    
+    public List listarNome(Class classe) throws HibernateException {        
+        return tipoEletronicoDao.listarTipoNome();        
     }
     
     public List<Cliente> pesquisarCliente (String pesq, int tipo) throws ClassNotFoundException, HibernateException {

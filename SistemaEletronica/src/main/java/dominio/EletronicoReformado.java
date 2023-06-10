@@ -22,7 +22,8 @@ public class EletronicoReformado implements Serializable {
     @Column(length = 20)
     private int valor;
     
-    //CRIAR OUTRA COLUNA PARA DIZER SE ELE FOI VENDIDO O NAO
+    @Column(nullable = false)
+    private boolean vendido;
     
     @ManyToOne
     @JoinColumn(name = "idTipoEletronico")
@@ -66,6 +67,10 @@ public class EletronicoReformado implements Serializable {
         return reparos;
     }
 
+    public boolean isVendido() {
+        return vendido;
+    }
+
     public void setReparos(String reparos) {
         this.reparos = reparos;
     }
@@ -84,6 +89,10 @@ public class EletronicoReformado implements Serializable {
 
     public void setTipo(TipoEletronico tipo) {
         this.tipo = tipo;
+    }
+
+    public void setVendido(boolean vendido) {
+        this.vendido = vendido;
     }
 
     

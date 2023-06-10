@@ -27,7 +27,7 @@ public class VendaReformado implements Serializable {
     @JoinColumn (name = "idCliente")
     private Cliente cliente;
     
-    @OneToOne (fetch = FetchType.EAGER)
+    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn (name = "idEletronicoRef")
     private EletronicoReformado eletronicoReformado;
 
@@ -41,6 +41,7 @@ public class VendaReformado implements Serializable {
         this.valorFinal = valorFinal;
         this.cliente = cliente;
         this.eletronicoReformado = eletronicoReformado;
+        this.eletronicoReformado.setVendido(true);
     }
     
     
