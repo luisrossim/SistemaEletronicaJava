@@ -9,6 +9,8 @@ import org.hibernate.Session;
 
 public class GenericDAO {
     
+    //==================================================================================
+    // INSERIR GENÉRICO
     public void inserir(Object obj) throws HibernateException {        
         
         Session sessao = null;
@@ -30,7 +32,8 @@ public class GenericDAO {
         }
     }
     
-    
+    //==================================================================================
+    // ALTERAR GENÉRICO
     public void alterar(Object obj) throws HibernateException {
         Session sessao = null;
         
@@ -51,6 +54,8 @@ public class GenericDAO {
         }
     }
     
+    //==================================================================================
+    // EXCLUIR GENÉRICO
     public void excluir(Object obj) throws HibernateException {
         Session sessao = null;
         
@@ -71,7 +76,8 @@ public class GenericDAO {
         }
     }
     
-    
+    //==================================================================================
+    // LISTAR GENÉRICO
     public List listar(Class classe) throws HibernateException {
         Session sessao = null;
         List lista = null;

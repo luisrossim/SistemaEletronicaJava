@@ -1,11 +1,8 @@
 package gerenciadorTarefas;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import dominio.Cidade;
 import dominio.Cliente;
 import dominio.EletronicoReformado;
-import dominio.Marca;
-import dominio.TipoEletronico;
 import interfaces.DlgCadCidade;
 import interfaces.DlgCadCliente;
 import interfaces.DlgCadEletronicoRef;
@@ -151,6 +148,8 @@ public class GerenciadorInterface {
         }
     }
     
+    //==================================================================================
+    //CARREGAR COMBO BOX ORDER BY NOME ASC
     public void carregarComboBoxByNomeTipoElet(JComboBox combo, Class classe) throws HibernateException {
         try {
             List<Class> lista = gerDominio.listarNomeTipoElet(classe);

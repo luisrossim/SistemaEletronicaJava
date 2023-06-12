@@ -34,7 +34,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNovoServico = new javax.swing.JButton();
         btnProcurarServico2 = new javax.swing.JButton();
         btnProcurarEmAndamento = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
@@ -116,10 +115,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 100, 30));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
-        jButton1.setText("Finalizar");
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 100, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -480,7 +475,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnProcurarVenda;
     private javax.swing.JButton btnProcurarVenda2;
     private javax.swing.JButton btnVender;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
