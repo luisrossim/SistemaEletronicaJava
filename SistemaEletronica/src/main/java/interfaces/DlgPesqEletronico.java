@@ -38,14 +38,14 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        cmbTipo = new javax.swing.JComboBox<>();
+        cmbFiltro = new javax.swing.JComboBox<>();
         txtPesq = new javax.swing.JTextField();
         pesqEletronico = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEletronicos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Procurar Produto");
+        setTitle("Procurar Eletronico Reformado");
         setModal(true);
         setResizable(false);
 
@@ -70,7 +70,14 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
 
         jLabel2.setText("Filtrar por:");
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo", "Marca", "Valor", " " }));
+        cmbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponivel", "Vendido" }));
+        cmbFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFiltroActionPerformed(evt);
+            }
+        });
+
+        txtPesq.setEnabled(false);
 
         pesqEletronico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
         pesqEletronico.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +118,7 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -134,7 +141,7 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(pesqEletronico))
                 .addGap(18, 18, 18)
@@ -156,7 +163,7 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
 
     private void pesqEletronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesqEletronicoActionPerformed
         try {
-            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronico(txtPesq.getText(), cmbTipo.getSelectedIndex() );
+            List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronico(txtPesq.getText(), cmbFiltro.getSelectedIndex() );
             
             ( (DefaultTableModel) tblEletronicos.getModel() ).setNumRows(0);
             
@@ -183,13 +190,32 @@ public class DlgPesqEletronico extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
+    private void cmbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltroActionPerformed
+        habilitarFiltro();
+    }//GEN-LAST:event_cmbFiltroActionPerformed
+
+    
+     private void habilitarFiltro(){
+        if(cmbFiltro.getSelectedIndex() == 0 || cmbFiltro.getSelectedIndex() == 1){
+            txtPesq.setText("");
+            txtPesq.setEnabled(false);
+        } else {
+            txtPesq.setEnabled(true);
+        }
+        
+        if (cmbFiltro.getSelectedIndex() == 1){
+            btnSelecionar.setEnabled(false);
+        } else {
+            btnSelecionar.setEnabled(true);
+        }
+    }
   
  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSelecionar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cmbTipo;
+    private javax.swing.JComboBox<String> cmbFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

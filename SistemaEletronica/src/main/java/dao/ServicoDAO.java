@@ -1,6 +1,5 @@
 package dao;
 
-import dominio.Cliente;
 import dominio.Servico;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,9 +74,5 @@ public class ServicoDAO extends GenericDAO {
     
     public List<Servico> pesqServicosConcluidos(String pesq, int tipo, char status) throws HibernateException {
         return pesquisar(pesq,tipo,status);
-    }
-    
-    public List<Servico> pesqServicosALL(String pesq, int tipo, char status) throws HibernateException {
-        return listar(Servico.class);
     }
 }

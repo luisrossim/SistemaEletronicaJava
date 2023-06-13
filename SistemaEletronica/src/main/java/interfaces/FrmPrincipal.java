@@ -42,16 +42,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
         btnVender = new javax.swing.JButton();
-        btnProcurarVenda = new javax.swing.JButton();
-        btnProcurarVenda2 = new javax.swing.JButton();
+        btnListarVendas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblEletronicos = new javax.swing.JTable();
-        btnProcurarEletronicosRef = new javax.swing.JButton();
+        btnListarEletronicosDisponiveis = new javax.swing.JButton();
         btnCadastrarRef = new javax.swing.JButton();
-        btnProcurarEletronico2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -62,6 +60,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnProcurarCliente = new javax.swing.JMenuItem();
         btnProcurarServico = new javax.swing.JMenuItem();
         btnProcurarEletronico = new javax.swing.JMenuItem();
+        btnProcurarVenda = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -101,7 +100,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnNovoServicoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNovoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 30));
+        jPanel3.add(btnNovoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 30));
 
         btnProcurarEmAndamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
         btnProcurarEmAndamento.setText("Listar");
@@ -110,11 +109,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnProcurarEmAndamentoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 100, 30));
+        jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 80, 30));
 
         btnVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
         btnVisualizar.setText("Visualizar");
-        jPanel3.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 100, 30));
+        jPanel3.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, 30));
 
         btnFinalizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
         btnFinalizar1.setText("Finalizar");
@@ -123,7 +122,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnFinalizar1ActionPerformed(evt);
             }
         });
-        jPanel3.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, 30));
+        jPanel3.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 100, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -155,24 +154,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnVenderActionPerformed(evt);
             }
         });
-        jPanel4.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, 30));
+        jPanel4.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 90, 30));
 
-        btnProcurarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarVenda.addActionListener(new java.awt.event.ActionListener() {
+        btnListarVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
+        btnListarVendas.setText("Listar");
+        btnListarVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarVendaActionPerformed(evt);
+                btnListarVendasActionPerformed(evt);
             }
         });
-        jPanel4.add(btnProcurarVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 40, 30));
-
-        btnProcurarVenda2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
-        btnProcurarVenda2.setText("Listar");
-        btnProcurarVenda2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarVenda2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnProcurarVenda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 100, 30));
+        jPanel4.add(btnListarVendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel1.setText("Área de aparelhos eletronicos reformados");
@@ -201,16 +192,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblEletronicos);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 200));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 190));
 
-        btnProcurarEletronicosRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
-        btnProcurarEletronicosRef.setText("Listar");
-        btnProcurarEletronicosRef.addActionListener(new java.awt.event.ActionListener() {
+        btnListarEletronicosDisponiveis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
+        btnListarEletronicosDisponiveis.setText("Listar");
+        btnListarEletronicosDisponiveis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarEletronicosRefActionPerformed(evt);
+                btnListarEletronicosDisponiveisActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProcurarEletronicosRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 100, 30));
+        jPanel1.add(btnListarEletronicosDisponiveis, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 30, -1, 30));
 
         btnCadastrarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/add.png"))); // NOI18N
         btnCadastrarRef.setText("Cadastrar");
@@ -219,15 +210,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnCadastrarRefActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCadastrarRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, 30));
-
-        btnProcurarEletronico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarEletronico2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarEletronico2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnProcurarEletronico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 40, 30));
+        jPanel1.add(btnCadastrarRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 30));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         jMenu1.setDisabledSelectedIcon(null);
@@ -293,6 +276,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(btnProcurarEletronico);
+
+        btnProcurarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnProcurarVenda.setText("Venda");
+        btnProcurarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarVendaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(btnProcurarVenda);
 
         jMenuBar1.add(jMenu5);
 
@@ -396,7 +388,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaCadServico();
     }//GEN-LAST:event_btnNovoServicoActionPerformed
 
-    private void btnProcurarEletronicosRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronicosRefActionPerformed
+    private void btnListarEletronicosDisponiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarEletronicosDisponiveisActionPerformed
         try {
             List<EletronicoReformado> lista = gerenciadorI.getGerDominio().pesquisarEletronico("", 0);
             
@@ -411,11 +403,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }//GEN-LAST:event_btnProcurarEletronicosRefActionPerformed
-
-    private void btnProcurarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendaActionPerformed
-        gerenciadorI.janelaProcurarVenda();
-    }//GEN-LAST:event_btnProcurarVendaActionPerformed
+    }//GEN-LAST:event_btnListarEletronicosDisponiveisActionPerformed
 
     private void btnCadastrarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRefActionPerformed
         gerenciadorI.janelaCadEletronicoRef();
@@ -438,13 +426,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnProcurarEmAndamentoActionPerformed
 
-    private void btnProcurarEletronico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEletronico2ActionPerformed
-        gerenciadorI.janelaProcurarEletronico();
-    }//GEN-LAST:event_btnProcurarEletronico2ActionPerformed
-
-    private void btnProcurarVenda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVenda2ActionPerformed
+    private void btnListarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarVendasActionPerformed
         try {
-            List<VendaReformado> lista = gerenciadorI.getGerDominio().pesquisarVendas();
+            List<VendaReformado> lista = gerenciadorI.getGerDominio().pesquisarVendas("",0);
             
             ( (DefaultTableModel) tblVendas.getModel() ).setNumRows(0);
             
@@ -457,7 +441,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }//GEN-LAST:event_btnProcurarVenda2ActionPerformed
+    }//GEN-LAST:event_btnListarVendasActionPerformed
 
     private void btnFinalizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizar1ActionPerformed
         int linha = tblServicosEmAndamento.getSelectedRow();
@@ -481,6 +465,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFinalizar1ActionPerformed
 
+    private void btnProcurarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendaActionPerformed
+        gerenciadorI.janelaProcurarVenda();
+    }//GEN-LAST:event_btnProcurarVendaActionPerformed
+
     
     
     
@@ -492,15 +480,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnCadServico;
     private javax.swing.JButton btnCadastrarRef;
     private javax.swing.JButton btnFinalizar1;
+    private javax.swing.JButton btnListarEletronicosDisponiveis;
+    private javax.swing.JButton btnListarVendas;
     private javax.swing.JButton btnNovoServico;
     private javax.swing.JMenuItem btnProcurarCliente;
     private javax.swing.JMenuItem btnProcurarEletronico;
-    private javax.swing.JButton btnProcurarEletronico2;
-    private javax.swing.JButton btnProcurarEletronicosRef;
     private javax.swing.JButton btnProcurarEmAndamento;
     private javax.swing.JMenuItem btnProcurarServico;
-    private javax.swing.JButton btnProcurarVenda;
-    private javax.swing.JButton btnProcurarVenda2;
+    private javax.swing.JMenuItem btnProcurarVenda;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JLabel jLabel1;

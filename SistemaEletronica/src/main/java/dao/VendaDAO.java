@@ -1,6 +1,6 @@
 package dao;
 
-import dominio.Cliente;
+import dominio.VendaReformado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,10 +12,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 
-public class ClienteDAO extends GenericDAO {
+public class VendaDAO extends GenericDAO {
     
+    //==================================================================================
     //PESQUISAR COM RESTRICOES
-    private List<Cliente> pesquisar(String pesq, int tipo) throws HibernateException {
+    private List<VendaReformado> pesquisar(String pesq, int tipo) throws HibernateException {
         List lista = null;
         Session sessao = null;
         try {
@@ -24,23 +25,18 @@ public class ClienteDAO extends GenericDAO {
 
             // Construtor da CONSULTA
             CriteriaBuilder builder = sessao.getCriteriaBuilder();
-            CriteriaQuery consulta = builder.createQuery( Cliente.class );
+            CriteriaQuery consulta = builder.createQuery(VendaReformado.class );
             
             // FROM
-            Root tabela = consulta.from(Cliente.class);
+            Root tabela = consulta.from(VendaReformado.class);
             
             // RESTRIÇÕES
             Predicate restricoes = null;
             
             switch (tipo) {
-                case 1: restricoes = builder.like(tabela.get("nome"), pesq + "%" ); 
-                        break;
-                case 2: restricoes = builder.like(tabela.get("cidade").get("nomeCidade"), pesq + "%" ); 
-                        break;
-                case 3: restricoes = builder.like(tabela.get("cpf"), pesq ); 
-                        break;                        
+                case 1: restricoes = builder.like(tabela.get("cliente").get("nome"), pesq + "%" ); break;                     
             }
-                        
+            
             consulta.where(restricoes);
             lista = sessao.createQuery(consulta).getResultList();            
 
@@ -55,16 +51,10 @@ public class ClienteDAO extends GenericDAO {
         }
         return lista;
     }
-            
-    public List<Cliente> pesqClienteNome(String pesq) throws HibernateException {
-        return pesquisar(pesq,1);
+    
+    
+    public List<VendaReformado> pesqVendaNomeCliente(String pesq, int tipo) throws HibernateException {
+        return pesquisar(pesq,tipo);
     }
     
-    public List<Cliente> pesqClienteCidade(String pesq) throws HibernateException {
-        return pesquisar(pesq,2);
-    }
-    
-    public List<Cliente> pesqClienteCPF(String pesq) throws HibernateException {
-        return pesquisar(pesq,3);
-    }
 }

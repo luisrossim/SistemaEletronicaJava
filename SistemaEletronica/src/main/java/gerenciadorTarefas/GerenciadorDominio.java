@@ -6,6 +6,7 @@ import dao.EletronicoRefDAO;
 import dao.GenericDAO;
 import dao.ServicoDAO;
 import dao.TipoEletronicoDAO;
+import dao.VendaDAO;
 import dominio.Cidade;
 import dominio.Cliente;
 import dominio.EletronicoCliente;
@@ -25,6 +26,7 @@ public class GerenciadorDominio {
     EletronicoRefDAO eletronicoRefDao = null;
     TipoEletronicoDAO tipoEletronicoDao = null;
     ServicoDAO servicoDao = null;
+    VendaDAO vendaDao = null;
     
     
     public GerenciadorDominio() throws ClassNotFoundException {
@@ -34,6 +36,7 @@ public class GerenciadorDominio {
         eletronicoRefDao = new EletronicoRefDAO();
         tipoEletronicoDao = new TipoEletronicoDAO();
         servicoDao = new ServicoDAO();
+        vendaDao = new VendaDAO();
     }
     
     
@@ -80,7 +83,6 @@ public class GerenciadorDominio {
     public int inserirVenda(Date data, String desc, int valor, Cliente cli, EletronicoReformado elet){
         VendaReformado venda = new VendaReformado(data, desc, valor, cli, elet);
         genDao.inserir(venda);
-        System.out.println(elet.isVendido());
         return venda.getIdVenda();
     }
     
@@ -99,9 +101,10 @@ public class GerenciadorDominio {
     public List<Cliente> pesquisarCliente (String pesq, int tipo) throws ClassNotFoundException, HibernateException {
         List<Cliente> lista = null;
         switch (tipo) {
-            case 0: lista = clienteDao.pesquisarClienteNome(pesq); break;
-            case 1: lista = clienteDao.pesquisarClienteCidade(pesq); break;
-            case 2: lista = clienteDao.pesquisarClienteCPF(pesq); break;
+            case 0: lista = clienteDao.listar(Cliente.class);
+            case 1: lista = clienteDao.pesqClienteNome(pesq); break;
+            case 2: lista = clienteDao.pesqClienteCidade(pesq); break;
+            case 3: lista = clienteDao.pesqClienteCPF(pesq); break;
         }
         return lista;
     }
@@ -109,10 +112,8 @@ public class GerenciadorDominio {
     public List<EletronicoReformado> pesquisarEletronico (String pesq, int tipo) throws ClassNotFoundException, HibernateException {
         List<EletronicoReformado> lista = null;
         switch (tipo) {
-            case 0: lista = eletronicoRefDao.pesquisarEletronicoReformado(pesq); break;
-            case 1: lista = eletronicoRefDao.pesquisarEletronicoTipo(pesq); break;
-            case 2: lista = eletronicoRefDao.pesquisarEletronicoMarca(pesq); break;
-            case 3: lista = eletronicoRefDao.pesquisarEletronicoValor(pesq); break;
+            case 0: lista = eletronicoRefDao.pesqEletronicoDisponivel(pesq, tipo); break;
+            case 1: lista = eletronicoRefDao.pesqEletronicoVendido(pesq, tipo); break;
         }
         return lista;
     }
@@ -127,15 +128,18 @@ public class GerenciadorDominio {
             switch (status) {
                 case 'E': lista = servicoDao.pesqServicosEmAndamento(pesq, tipo, status); break;
                 case 'C': lista = servicoDao.pesqServicosConcluidos(pesq, tipo, status); break;
-                case 'T': lista = servicoDao.pesqServicosALL(pesq, tipo, status); break;
+                case 'T': lista = servicoDao.listar(Servico.class); break;
             }
         }
         return lista;
     }
     
-    public List<VendaReformado> pesquisarVendas () throws ClassNotFoundException, HibernateException {
+    public List<VendaReformado> pesquisarVendas (String pesq, int tipo) throws ClassNotFoundException, HibernateException {
         List<VendaReformado> lista = null;
-        lista = genDao.listar(VendaReformado.class);
+        switch (tipo) {
+            case 0: lista = genDao.listar(VendaReformado.class); break;
+            case 1: lista = vendaDao.pesqVendaNomeCliente(pesq, tipo);
+        }
         return lista;
     }
      
@@ -168,7 +172,7 @@ public class GerenciadorDominio {
     public void finalizarServico(Servico servico){
         servico.setDataFim(new Date());
         servico.setFinalizado(true);
-        genDao.alterar(servico);
+        servicoDao.alterar(servico);
     }
     
 }
