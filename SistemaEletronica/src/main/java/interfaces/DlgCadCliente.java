@@ -21,6 +21,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         initComponents();
         this.gerenciadorI = gerenciadorI;
         this.cliSelecionado = null;
+        habilitarBotoes();
     }
 
     
@@ -33,7 +34,6 @@ public class DlgCadCliente extends javax.swing.JDialog {
 
         btngrpSexo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -49,7 +49,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         btnPesquisarCliente = new javax.swing.JButton();
         lblEmail = new javax.swing.JLabel();
         btnAddCidade = new javax.swing.JButton();
-        txtTelefone = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
         btnCancelar = new javax.swing.JButton();
         btnCadastrarCliente = new javax.swing.JButton();
         btnAlterarCliente = new javax.swing.JButton();
@@ -112,8 +112,8 @@ public class DlgCadCliente extends javax.swing.JDialog {
         lblTelefone.setText("Telefone:");
         jPanel1.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jPanel1.add(comboCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 170, -1));
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 170, -1));
+        jPanel1.add(comboCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 190, -1));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 190, -1));
 
         lblCidade.setForeground(java.awt.Color.white);
         lblCidade.setText("Cidade:");
@@ -124,7 +124,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 110, -1));
+        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 190, -1));
 
         lblCPF.setForeground(java.awt.Color.white);
         lblCPF.setText("CPF:");
@@ -151,8 +151,14 @@ public class DlgCadCliente extends javax.swing.JDialog {
                 btnAddCidadeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAddCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
-        jPanel1.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 110, -1));
+        jPanel1.add(btnAddCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
+
+        try {
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel1.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 190, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -169,6 +175,7 @@ public class DlgCadCliente extends javax.swing.JDialog {
         btnCadastrarCliente.setBackground(new java.awt.Color(0, 102, 102));
         btnCadastrarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCadastrarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarCliente.setMnemonic('C');
         btnCadastrarCliente.setText("Cadastrar");
         btnCadastrarCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnCadastrarCliente.setBorderPainted(false);
@@ -181,12 +188,13 @@ public class DlgCadCliente extends javax.swing.JDialog {
         btnAlterarCliente.setBackground(new java.awt.Color(102, 102, 102));
         btnAlterarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAlterarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterarCliente.setMnemonic('A');
         btnAlterarCliente.setText("Alterar");
         btnAlterarCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnAlterarCliente.setBorderPainted(false);
         btnAlterarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarClienteActionPerformed(evt);
+                btnCadastrarClienteActionPerformed(evt);
             }
         });
 
@@ -201,24 +209,21 @@ public class DlgCadCliente extends javax.swing.JDialog {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAlterarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,13 +238,14 @@ public class DlgCadCliente extends javax.swing.JDialog {
     
     
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cliSelecionado = null;
         limparCampos();
-        this.dispose();
+        habilitarBotoes();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         gerenciadorI.carregarComboBox(comboCidade, Cidade.class);
-        habilitarBotoes();
+        limparCampos();
     }//GEN-LAST:event_formComponentShown
 
     private void btnAddCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCidadeActionPerformed
@@ -260,12 +266,13 @@ public class DlgCadCliente extends javax.swing.JDialog {
         if(validarCampos()) {
             try {
                 if(cliSelecionado == null) {
-                    // INSERIR
                     int id = gerenciadorI.getGerDominio().inserirCliente(nome, telefone, cpf, cidade, sexo, email);
-                    JOptionPane.showMessageDialog(this, "Cliente " + id + "inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE );
+                    JOptionPane.showMessageDialog(this, "Cliente " + id + " (" + nome + ") inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE );
                     this.dispose();
                 }else{
-                    // ALTERAR
+                    gerenciadorI.getGerDominio().alterarCliente(cliSelecionado, nome, telefone, cpf, cidade, sexo, email);
+                    int id = cliSelecionado.getIdCliente();
+                    JOptionPane.showMessageDialog(this, "Cliente " + id + " (" + nome + ") inserido com sucesso.", "Inserir Cliente", JOptionPane.INFORMATION_MESSAGE  ); 
                 }
                 
             } catch(HibernateException ex) {
@@ -276,12 +283,6 @@ public class DlgCadCliente extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
-
-    //==================================================================================
-    //ALTERAR CLIENTE
-    private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
-        //CHAMA FUNCAO UPDATE
-    }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
         cliSelecionado = gerenciadorI.janelaProcurarCliente();
@@ -346,6 +347,15 @@ public class DlgCadCliente extends javax.swing.JDialog {
     private void preencherCampos(Cliente cli) throws ParseException {
         if ( cli != null ) {
             txtNome.setText(cli.getNome());
+            txtTelefone.setText(cli.getTelefone());
+            txtCpf.setText(cli.getCpf());
+            txtEmail.setText(cli.getEmail());
+            comboCidade.setSelectedItem(cli.getCidade());
+            if ( cli.getSexo() == 'M' ) {
+                rdbMasc.setSelected(true);
+            } else {
+                rdbFem.setSelected(true);
+            }      
             habilitarBotoes();
         }
     }
@@ -374,7 +384,6 @@ public class DlgCadCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblCidade;
     private javax.swing.JLabel lblEmail;
@@ -385,6 +394,6 @@ public class DlgCadCliente extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

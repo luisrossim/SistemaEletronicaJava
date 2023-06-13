@@ -212,12 +212,11 @@ public class DlgPesqCliente extends javax.swing.JDialog {
         int linha = tblClientes.getSelectedRow();
         if ( linha >= 0 ) {
             cliSelecionado = (Cliente) tblClientes.getValueAt(linha, 1);
+            this.setVisible(false);
         }
         else {
             JOptionPane.showMessageDialog(this,"Selecione uma linha.", "Pesquisar cliente", JOptionPane.ERROR_MESSAGE  );
         }
-        
-        this.setVisible(false);
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
     

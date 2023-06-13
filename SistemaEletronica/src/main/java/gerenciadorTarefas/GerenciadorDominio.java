@@ -4,6 +4,7 @@ import dao.ClienteDAO;
 import dao.ConnectionHibernate;
 import dao.EletronicoRefDAO;
 import dao.GenericDAO;
+import dao.ServicoDAO;
 import dao.TipoEletronicoDAO;
 import dominio.Cidade;
 import dominio.Cliente;
@@ -23,6 +24,7 @@ public class GerenciadorDominio {
     ClienteDAO clienteDao = null;
     EletronicoRefDAO eletronicoRefDao = null;
     TipoEletronicoDAO tipoEletronicoDao = null;
+    ServicoDAO servicoDao = null;
     
     
     public GerenciadorDominio() throws ClassNotFoundException {
@@ -31,6 +33,7 @@ public class GerenciadorDominio {
         clienteDao = new ClienteDAO();
         eletronicoRefDao = new EletronicoRefDAO();
         tipoEletronicoDao = new TipoEletronicoDAO();
+        servicoDao = new ServicoDAO();
     }
     
     
@@ -114,9 +117,19 @@ public class GerenciadorDominio {
         return lista;
     }
     
-    public List<Servico> pesquisarServicos () throws ClassNotFoundException, HibernateException {
+    public List<Servico> pesquisarServicos (String pesq, int tipo, char status) throws ClassNotFoundException, HibernateException {
         List<Servico> lista = null;
-        lista = genDao.listar(Servico.class);
+        if(tipo >= 0){
+            switch (tipo) {
+                case 0: lista = servicoDao.pesqServicosNomeCliente(pesq, tipo, status); break;
+            }
+        }else{
+            switch (status) {
+                case 'E': lista = servicoDao.pesqServicosEmAndamento(pesq, tipo, status); break;
+                case 'C': lista = servicoDao.pesqServicosConcluidos(pesq, tipo, status); break;
+                case 'T': lista = servicoDao.pesqServicosALL(pesq, tipo, status); break;
+            }
+        }
         return lista;
     }
     
@@ -138,11 +151,24 @@ public class GerenciadorDominio {
     
     //==================================================================================
     //ALTERAR
-    public void alterarCliente(){
-        //PARAMETRO (CLIENTE + DADOS)
-        //SETAR NOVOS DADOS NO CLIENTE
-        //CHAMAR FUNCAO ALTERAR (UPDATE)
+    public void alterarCliente(Cliente cli, String nome, String telefone, String cpf, Cidade cidade, char sexo, String email){
+        cli.setNome(nome);
+        cli.setTelefone(telefone);
+        cli.setCpf(cpf);
+        cli.setEmail(email);
+        cli.setSexo(sexo);
+        cli.setCidade(cidade);
+        clienteDao.alterar(cli);
     }
     
+    
+    
+    //==================================================================================
+    //FINALIZAR SERVICO
+    public void finalizarServico(Servico servico){
+        servico.setDataFim(new Date());
+        servico.setFinalizado(true);
+        genDao.alterar(servico);
+    }
     
 }

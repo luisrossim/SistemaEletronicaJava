@@ -33,6 +33,7 @@ public class Servico implements Serializable {
     private Date dataInicio;
     
     @Temporal(TemporalType.DATE)
+    @Column(nullable = true)
     private Date dataFim;
     
     @ManyToOne ( fetch = FetchType.EAGER)
@@ -145,11 +146,15 @@ public class Servico implements Serializable {
     
     
     public Object[] toArray() throws ParseException {
-        return new Object[] { idServico, cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
+        return new Object[] { this, cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
     }
+
+    @Override
+    public String toString() {
+        return "[" + idServico + ']';
+    }
+
     
-    //TESTE
-    public Object[] toArray2() throws ParseException {
-        return new Object[] { cliente.getNome(), eletronicoCliente.getTipo().toString(), dataInicio, cliente.getTelefone()};
-    }
+    
+    
 }

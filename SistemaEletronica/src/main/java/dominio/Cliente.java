@@ -15,10 +15,10 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
     
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String nome;
     
-    @Column(length = 11)
+    @Column(length = 13)
     private String telefone;
     
     @Column(updatable = false, length = 14, nullable = false, unique = true)

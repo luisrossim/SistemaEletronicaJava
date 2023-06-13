@@ -11,7 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 
-public class TipoEletronicoDAO {
+public class TipoEletronicoDAO extends GenericDAO {
     public List<String> listarNomeTipo() throws HibernateException {
         List<String> lista = null;
         Session sessao = null;

@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.HibernateException;
@@ -16,10 +17,12 @@ import org.hibernate.HibernateException;
 public class FrmPrincipal extends javax.swing.JFrame {
 
     private GerenciadorInterface gerenciadorI;
+    private Servico servicoSelecionado;
     
     public FrmPrincipal(GerenciadorInterface gerenciadorI) {
         initComponents();
         this.gerenciadorI = gerenciadorI;
+        servicoSelecionado = null;
     }
 
    
@@ -32,8 +35,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicosEmAndamento = new javax.swing.JTable();
         btnNovoServico = new javax.swing.JButton();
-        btnProcurarServico2 = new javax.swing.JButton();
         btnProcurarEmAndamento = new javax.swing.JButton();
+        btnVisualizar = new javax.swing.JButton();
+        btnFinalizar1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
@@ -75,11 +79,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cliente", "Tipo Eletronico", "Data Inicio", "Telefone"
+                "Servico", "Cliente", "Tipo Eletronico", "Data Inicio", "Telefone"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -88,7 +92,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblServicosEmAndamento);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 540, 500));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 540, 450));
 
         btnNovoServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         btnNovoServico.setText("Novo");
@@ -99,14 +103,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jPanel3.add(btnNovoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 30));
 
-        btnProcurarServico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnProcurarServico2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcurarServico2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnProcurarServico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 40, 30));
-
         btnProcurarEmAndamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
         btnProcurarEmAndamento.setText("Listar");
         btnProcurarEmAndamento.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +110,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnProcurarEmAndamentoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 100, 30));
+        jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 100, 30));
+
+        btnVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnVisualizar.setText("Visualizar");
+        jPanel3.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 100, 30));
+
+        btnFinalizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
+        btnFinalizar1.setText("Finalizar");
+        btnFinalizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizar1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -404,10 +413,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnProcurarEletronicosRefActionPerformed
 
-    private void btnProcurarServico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarServico2ActionPerformed
-        gerenciadorI.janelaProcurarServico();
-    }//GEN-LAST:event_btnProcurarServico2ActionPerformed
-
     private void btnProcurarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendaActionPerformed
         gerenciadorI.janelaProcurarVenda();
     }//GEN-LAST:event_btnProcurarVendaActionPerformed
@@ -418,12 +423,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnProcurarEmAndamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarEmAndamentoActionPerformed
         try {
-            List<Servico> lista = gerenciadorI.getGerDominio().pesquisarServicos();
+            List<Servico> lista = gerenciadorI.getGerDominio().pesquisarServicos("", -1, 'E');
             
-            ( (DefaultTableModel) tblServicosEmAndamento.getModel() ).setNumRows(0);
+            ((DefaultTableModel) tblServicosEmAndamento.getModel()).setNumRows(0);
             
-            for (Servico servico : lista ) {     
-                ( (DefaultTableModel) tblServicosEmAndamento.getModel() ).addRow( servico.toArray2() );
+            for (Servico servico : lista) {     
+                ((DefaultTableModel) tblServicosEmAndamento.getModel()).addRow( servico.toArray());
             }
             
         } catch (ClassNotFoundException | HibernateException ex) {
@@ -454,6 +459,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnProcurarVenda2ActionPerformed
 
+    private void btnFinalizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizar1ActionPerformed
+        int linha = tblServicosEmAndamento.getSelectedRow();
+        if ( linha >= 0 ) {
+            servicoSelecionado = (Servico) tblServicosEmAndamento.getValueAt(linha, 0);
+            String message = "Tem certeza que deseja finalizar o serviço [" + servicoSelecionado.getIdServico() + "] ?";
+            String title = "Confirmar finalização";
+            
+            if (JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                try {
+                    gerenciadorI.getGerDominio().finalizarServico(servicoSelecionado);
+                } catch(HibernateException ex) {
+                    JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );
+                }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Selecione um serviço", "Finalizar serviço", JOptionPane.ERROR_MESSAGE  );
+        }
+    }//GEN-LAST:event_btnFinalizar1ActionPerformed
+
     
     
     
@@ -464,6 +491,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnCadEletronico;
     private javax.swing.JMenuItem btnCadServico;
     private javax.swing.JButton btnCadastrarRef;
+    private javax.swing.JButton btnFinalizar1;
     private javax.swing.JButton btnNovoServico;
     private javax.swing.JMenuItem btnProcurarCliente;
     private javax.swing.JMenuItem btnProcurarEletronico;
@@ -471,10 +499,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnProcurarEletronicosRef;
     private javax.swing.JButton btnProcurarEmAndamento;
     private javax.swing.JMenuItem btnProcurarServico;
-    private javax.swing.JButton btnProcurarServico2;
     private javax.swing.JButton btnProcurarVenda;
     private javax.swing.JButton btnProcurarVenda2;
     private javax.swing.JButton btnVender;
+    private javax.swing.JButton btnVisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;

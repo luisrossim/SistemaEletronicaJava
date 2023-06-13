@@ -14,12 +14,19 @@ import java.util.Comparator;
 public class FuncoesUteis {
     //==================================================================================
     //CONVERTE STRING PARA FORMATO DATE
-    public static Date strToDate( String strDt) throws ParseException {
+    public static Date strToDate(String strDt) throws ParseException {
         DateFormat dtForm = new SimpleDateFormat("dd/MM/yyyy");
         dtForm.setLenient(false);
         return dtForm.parse(strDt);
     }
     
+    //==================================================================================
+    //CONVERTE DATE PARA FORMATO STRING
+    public static String dateToStr(Date dt) throws ParseException {
+        DateFormat dtForm = new SimpleDateFormat("dd/MM/yyyy");
+        dtForm.setLenient(false);
+        return dtForm.format(dt);
+    }
     
     //==================================================================================
     //VALIDAR CPF

@@ -43,7 +43,6 @@ public class DlgCadServico extends javax.swing.JDialog {
         btnProcurarCliente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtValor = new javax.swing.JTextField();
-        txtDataFim = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         comboTipo = new javax.swing.JComboBox<>();
@@ -53,7 +52,6 @@ public class DlgCadServico extends javax.swing.JDialog {
         txtDetalhesEletronico = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         listProblemas = new javax.swing.JList<>();
-        txtDataInicio = new javax.swing.JFormattedTextField();
         btnCancelar = new javax.swing.JButton();
         btnCadServico = new javax.swing.JButton();
 
@@ -97,22 +95,22 @@ public class DlgCadServico extends javax.swing.JDialog {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jRadioButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton4)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton4)
-                .addContainerGap())
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 80, 90));
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 160, 50));
 
         txtDetalhesServico.setColumns(20);
         txtDetalhesServico.setLineWrap(true);
@@ -132,20 +130,9 @@ public class DlgCadServico extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço estimado"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 90, -1));
 
-        txtValor.setText("0");
-        jPanel1.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, -1));
-
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 110, 50));
-
-        txtDataFim.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Fim", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-        try {
-            txtDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtDataFim.setToolTipText("");
-        jPanel3.add(txtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 80, -1));
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 110, 50));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Eletronico"));
 
@@ -206,15 +193,6 @@ public class DlgCadServico extends javax.swing.JDialog {
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 160, 220));
 
-        txtDataInicio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Inicio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-        try {
-            txtDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtDataInicio.setToolTipText("");
-        jPanel3.add(txtDataInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 80, -1));
-
         btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -270,8 +248,8 @@ public class DlgCadServico extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadServico, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -312,8 +290,8 @@ public class DlgCadServico extends javax.swing.JDialog {
             String descricaoSer = txtDetalhesServico.getText();
             TipoEletronico tipo = (TipoEletronico) comboTipo.getSelectedItem();
             int valor = Integer.parseInt(txtValor.getText());
-            String dataInicioStr = txtDataInicio.getText();
-            String dataFimStr = txtDataFim.getText();
+            Date dataInicio = new Date();
+            Date dataFim = null;
             
             String local;
             char localChar = (char) groupRadioLocal.getSelection().getMnemonic();
@@ -329,16 +307,11 @@ public class DlgCadServico extends javax.swing.JDialog {
             }
             
             try {
-                Date dataInicio = FuncoesUteis.strToDate(dataInicioStr);
-                Date dataFim = FuncoesUteis.strToDate(dataFimStr);
                 int idServico = gerenciadorI.getGerDominio().inserirServico(cliSelecionado, descricaoEle, descricaoSer, tipo, valor, dataInicio, dataFim, local, problemas);
                 JOptionPane.showMessageDialog(this, "Servico " + idServico + " inserido com sucesso.");
                 this.dispose();
                 
-            } catch (ParseException | HibernateException ex) {
-                JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex, "ERRO Servico", JOptionPane.ERROR_MESSAGE  );
             }
 
@@ -376,8 +349,6 @@ public class DlgCadServico extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JList<String> listProblemas;
-    private javax.swing.JFormattedTextField txtDataFim;
-    private javax.swing.JFormattedTextField txtDataInicio;
     private javax.swing.JTextArea txtDetalhesEletronico;
     private javax.swing.JTextArea txtDetalhesServico;
     private javax.swing.JTextField txtNomeCliente;

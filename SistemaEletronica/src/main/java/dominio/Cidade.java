@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 
@@ -48,5 +49,32 @@ public class Cidade implements Serializable {
     @Override
     public String toString() {
         return this.nomeCidade;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + this.idCidade;
+        hash = 47 * hash + Objects.hashCode(this.nomeCidade);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cidade other = (Cidade) obj;
+        if (this.idCidade != other.idCidade) {
+            return false;
+        }
+
+        return true;
     }
 }
