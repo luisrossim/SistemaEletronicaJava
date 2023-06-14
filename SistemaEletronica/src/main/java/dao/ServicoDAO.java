@@ -23,20 +23,20 @@ public class ServicoDAO extends GenericDAO {
             sessao = ConnectionHibernate.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            // Construtor da CONSULTA
             CriteriaBuilder builder = sessao.getCriteriaBuilder();
             CriteriaQuery consulta = builder.createQuery( Servico.class );
             
-            // FROM
             Root tabela = consulta.from(Servico.class);
             
-            // RESTRIÇÕES
             Predicate restricoes = null;
             
             if(tipo >= 0){
                 switch (tipo) {
                     case 0: restricoes = builder.like(tabela.get("cliente").get("nome"), pesq + "%" ); 
-                        break;                     
+                        break;
+                    case 1: Expression exp = builder.function("month", Integer.class, tabela.get("dataInicio") );
+                            restricoes = builder.equal(exp, pesq);
+                        break;  
                 }
             } else {
                 switch (status) {
@@ -67,6 +67,9 @@ public class ServicoDAO extends GenericDAO {
         return pesquisar(pesq,tipo,status);
     }
     
+    public List<Servico> pesqServicosMesPedido(String pesq, int tipo, char status) throws HibernateException {
+        return pesquisar(pesq,tipo,status);
+    }
     
     public List<Servico> pesqServicosEmAndamento(String pesq, int tipo, char status) throws HibernateException {
         return pesquisar(pesq,tipo,status);

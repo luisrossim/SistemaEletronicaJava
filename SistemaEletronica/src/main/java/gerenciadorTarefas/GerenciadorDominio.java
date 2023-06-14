@@ -98,6 +98,9 @@ public class GerenciadorDominio {
         return tipoEletronicoDao.listarNomeTipo();        
     }
     
+    
+    //==================================================================================
+    //PESQUISAR
     public List<Cliente> pesquisarCliente (String pesq, int tipo) throws ClassNotFoundException, HibernateException {
         List<Cliente> lista = null;
         switch (tipo) {
@@ -123,6 +126,7 @@ public class GerenciadorDominio {
         if(tipo >= 0){
             switch (tipo) {
                 case 0: lista = servicoDao.pesqServicosNomeCliente(pesq, tipo, status); break;
+                case 1: lista = servicoDao.pesqServicosMesPedido(pesq, tipo, status); break;
             }
         }else{
             switch (status) {
@@ -151,6 +155,10 @@ public class GerenciadorDominio {
         clienteDao.excluir(cliente);
     }
     
+    public void excluirEletReformado(EletronicoReformado elet){
+        eletronicoRefDao.excluir(elet);
+    }
+    
     
     
     //==================================================================================
@@ -163,6 +171,13 @@ public class GerenciadorDominio {
         cli.setSexo(sexo);
         cli.setCidade(cidade);
         clienteDao.alterar(cli);
+    }
+    
+    public void alterarEletronicoReformado(EletronicoReformado elet, String descricao, String reparos, int valor, TipoEletronico tipo){
+        elet.setDescricao(descricao);
+        elet.setReparos(reparos);
+        elet.setValor(valor);
+        eletronicoRefDao.alterar(elet);
     }
     
     

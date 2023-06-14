@@ -18,11 +18,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private GerenciadorInterface gerenciadorI;
     private Servico servicoSelecionado;
+    private EletronicoReformado eletReformadoSelecionado;
     
     public FrmPrincipal(GerenciadorInterface gerenciadorI) {
         initComponents();
         this.gerenciadorI = gerenciadorI;
         servicoSelecionado = null;
+        eletReformadoSelecionado = null;
     }
 
    
@@ -36,8 +38,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         tblServicosEmAndamento = new javax.swing.JTable();
         btnNovoServico = new javax.swing.JButton();
         btnProcurarEmAndamento = new javax.swing.JButton();
-        btnVisualizar = new javax.swing.JButton();
         btnFinalizar1 = new javax.swing.JButton();
+        btnVisualizarServico = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
@@ -50,6 +52,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         tblEletronicos = new javax.swing.JTable();
         btnListarEletronicosDisponiveis = new javax.swing.JButton();
         btnCadastrarRef = new javax.swing.JButton();
+        btnVisualizarReformado = new javax.swing.JButton();
+        btnExcluirReformado = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -111,10 +115,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jPanel3.add(btnProcurarEmAndamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 80, 30));
 
-        btnVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
-        btnVisualizar.setText("Visualizar");
-        jPanel3.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, 30));
-
         btnFinalizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/accept.png"))); // NOI18N
         btnFinalizar1.setText("Finalizar");
         btnFinalizar1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +123,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnFinalizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 530, 100, 30));
+
+        btnVisualizarServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnVisualizarServico.setText("Visualizar");
+        jPanel3.add(btnVisualizarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -192,7 +196,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblEletronicos);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 190));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 150));
 
         btnListarEletronicosDisponiveis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/repeat.png"))); // NOI18N
         btnListarEletronicosDisponiveis.setText("Listar");
@@ -211,6 +215,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCadastrarRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 30));
+
+        btnVisualizarReformado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
+        btnVisualizarReformado.setText("Visualizar");
+        jPanel1.add(btnVisualizarReformado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 30));
+
+        btnExcluirReformado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/remove.png"))); // NOI18N
+        btnExcluirReformado.setText("Excluir");
+        btnExcluirReformado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirReformadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnExcluirReformado, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 90, 30));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/logo16px.png"))); // NOI18N
         jMenu1.setDisabledSelectedIcon(null);
@@ -469,6 +486,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gerenciadorI.janelaProcurarVenda();
     }//GEN-LAST:event_btnProcurarVendaActionPerformed
 
+    private void btnExcluirReformadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirReformadoActionPerformed
+        int linha = tblEletronicos.getSelectedRow();
+        if ( linha >= 0 ) {
+            eletReformadoSelecionado = (EletronicoReformado) tblEletronicos.getValueAt(linha, 0);
+            String message = "Tem certeza que deseja excluir o reformado [" + eletReformadoSelecionado.toString()+ "] ?";
+            String title = "Confirmar exclusão";
+            
+            if (JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                try {
+                    gerenciadorI.getGerDominio().excluirEletReformado(eletReformadoSelecionado);
+                } catch(HibernateException ex) {
+                    JOptionPane.showMessageDialog(this, ex, "ERRO Eletronico Reformado", JOptionPane.ERROR_MESSAGE  );
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex, "ERRO Eletronico Reformado", JOptionPane.ERROR_MESSAGE  );
+                }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Selecione um eletronico", "Excluir Eletronico", JOptionPane.ERROR_MESSAGE  );
+        }
+    }//GEN-LAST:event_btnExcluirReformadoActionPerformed
+
     
     
     
@@ -479,6 +518,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnCadEletronico;
     private javax.swing.JMenuItem btnCadServico;
     private javax.swing.JButton btnCadastrarRef;
+    private javax.swing.JButton btnExcluirReformado;
     private javax.swing.JButton btnFinalizar1;
     private javax.swing.JButton btnListarEletronicosDisponiveis;
     private javax.swing.JButton btnListarVendas;
@@ -489,7 +529,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnProcurarServico;
     private javax.swing.JMenuItem btnProcurarVenda;
     private javax.swing.JButton btnVender;
-    private javax.swing.JButton btnVisualizar;
+    private javax.swing.JButton btnVisualizarReformado;
+    private javax.swing.JButton btnVisualizarServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;

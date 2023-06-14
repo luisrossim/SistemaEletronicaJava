@@ -109,7 +109,7 @@ public class EletronicoReformado implements Serializable {
     }
     
     public Object[] toArray2() throws ParseException {
-        return new Object[] { tipo.toString(), descricao, reparos, valor};
+        return new Object[] { this, descricao, reparos, valor};
     }
    
 }

@@ -51,7 +51,7 @@ public class DlgPesqServico extends javax.swing.JDialog {
             }
         });
 
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome cliente" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Mes" }));
         comboFiltro.setEnabled(false);
 
         jLabel2.setText("Filtro:");
@@ -231,6 +231,7 @@ public class DlgPesqServico extends javax.swing.JDialog {
     }//GEN-LAST:event_chkFiltroActionPerformed
 
     private void habilitarCampoPesq(){
+        txtPesq.setText("");
         if (chkFiltro.isSelected()) {
             rdb1.setEnabled(false);
             rdb2.setEnabled(false);
