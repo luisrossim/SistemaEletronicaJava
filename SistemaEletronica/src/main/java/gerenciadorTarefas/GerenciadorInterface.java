@@ -29,7 +29,6 @@ public class GerenciadorInterface {
     private DlgPesqServico janProcurarServico = null;
     private DlgPesqEletronico janProcurarEletronico = null;
     private DlgPesqVenda janProcurarVenda = null;
-    private DlgViewServico janViewServico = null;
     
     
     
@@ -119,9 +118,6 @@ public class GerenciadorInterface {
         janCadCidade = (DlgCadCidade) abrirJanela(janPrincipal, janCadCidade, DlgCadCidade.class);
     }
     
-    public void janelaViewServico(){
-        janViewServico = (DlgViewServico) abrirJanela(janPrincipal, janViewServico, DlgViewServico.class);
-    }
     
     
     
