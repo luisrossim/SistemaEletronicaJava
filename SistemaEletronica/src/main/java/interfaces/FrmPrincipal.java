@@ -86,7 +86,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -126,6 +126,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btnVisualizarServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaces.imgs/search.png"))); // NOI18N
         btnVisualizarServico.setText("Visualizar");
+        btnVisualizarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarServicoActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnVisualizarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, 30));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendas recentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -507,6 +512,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Selecione um eletronico", "Excluir Eletronico", JOptionPane.ERROR_MESSAGE  );
         }
     }//GEN-LAST:event_btnExcluirReformadoActionPerformed
+
+    private void btnVisualizarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarServicoActionPerformed
+        int linha = tblServicosEmAndamento.getSelectedRow();
+        if ( linha >= 0 ) {
+            servicoSelecionado = (Servico) tblServicosEmAndamento.getValueAt(linha, 0);
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Selecione um serviço", "Visualizar serviço", JOptionPane.ERROR_MESSAGE  );
+        }
+    }//GEN-LAST:event_btnVisualizarServicoActionPerformed
 
     
     

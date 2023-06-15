@@ -1,22 +1,8 @@
 package gerenciadorTarefas;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import dominio.Cliente;
-import dominio.EletronicoReformado;
-import interfaces.DlgCadCidade;
-import interfaces.DlgCadCliente;
-import interfaces.DlgCadEletronicoRef;
-import interfaces.DlgCadMarca;
-import interfaces.DlgCadServico;
-import interfaces.DlgCadTipoEletronico;
-import interfaces.DlgLogin;
-import interfaces.DlgPesqCliente;
-import interfaces.DlgPesqEletronico;
-import interfaces.DlgPesqServico;
-import interfaces.DlgPesqVenda;
-import interfaces.DlgCadVenda;
-import interfaces.DlgViewServico;
-import interfaces.FrmPrincipal;
+import dominio.*;
+import interfaces.*;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -74,10 +60,10 @@ public class GerenciadorInterface {
             }
         }        
         dlg.setLocationRelativeTo(null);
-        dlg.setVisible(true); 
+        dlg.setVisible(true);
         return dlg;
     }
-    
+
     public void janelaLogin() {
         janLogin = (DlgLogin) abrirJanela(null, janLogin, DlgLogin.class);
     }

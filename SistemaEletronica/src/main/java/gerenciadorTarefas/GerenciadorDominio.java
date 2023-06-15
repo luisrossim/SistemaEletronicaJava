@@ -1,20 +1,7 @@
 package gerenciadorTarefas;
 
-import dao.ClienteDAO;
-import dao.ConnectionHibernate;
-import dao.EletronicoRefDAO;
-import dao.GenericDAO;
-import dao.ServicoDAO;
-import dao.TipoEletronicoDAO;
-import dao.VendaDAO;
-import dominio.Cidade;
-import dominio.Cliente;
-import dominio.EletronicoCliente;
-import dominio.EletronicoReformado;
-import dominio.Marca;
-import dominio.Servico;
-import dominio.TipoEletronico;
-import dominio.VendaReformado;
+import dao.*;
+import dominio.*;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
